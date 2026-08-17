@@ -1,0 +1,19 @@
+{
+  "name": "teacher-performance-analytics-mobile-automation",
+  "version": "1.0.0",
+  "description": "Appium E2E automation framework for Teacher Performance Analytics Android application",
+  "main": "tests/appium-tests.js",
+  "scripts": {
+    "test": "mocha tests/appium-tests.js --timeout 150000 --exit",
+    "report": "node utils/report-generator.js"
+  },
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "webdriverio": "^8.39.0",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "mocha": "^10.4.0",
+    "chai": "^4.4.1"
+  }
+}

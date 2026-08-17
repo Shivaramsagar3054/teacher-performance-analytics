@@ -1,0 +1,122 @@
+name: Android Appium E2E Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  android-e2e:
+    runs-on: macos-13 # MacOS runner is required for Android hardware acceleration / KVM emulation
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Mobile App Dependencies
+        run: |
+          cd mobile-app
+          npm install
+
+      - name: Build Android Debug APK
+        run: |
+          cd mobile-app/android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Install Appium & UIAutomator2 Driver
+        run: |
+          npm install -g appium
+          appium driver install uiautomator2
+
+      - name: Start Appium Server
+        run: |
+          appium --log appium.log &
+          sleep 10
+          cat appium.log
+
+      - name: Install Mobile Automation Dependencies
+        run: |
+          cd mobile-automation
+          npm install
+
+      - name: Execute E2E Tests in Android Emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 33
+          target: google_apis
+          arch: x86_64
+          force-avd-creation: false
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
+          script: |
+            adb install mobile-app/android/app/build/outputs/apk/debug/app-debug.apk
+            cd mobile-automation
+            npm test
+        env:
+          ANDROID_DEVICE_NAME: "emulator-5554"
+          ANDROID_PLATFORM_VERSION: "13.0"
+          APP_APK_PATH: "../mobile-app/android/app/build/outputs/apk/debug/app-debug.apk"
+
+      - name: Archive Mobile Reports to gh-pages Branch
+        if: always()
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Clone the gh-pages branch
+          git clone --branch gh-pages https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages-dir || {
+            git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages-dir
+            cd gh-pages-dir
+            git checkout --orphan gh-pages
+            git rm -rf .
+            cd ..
+          }
+          
+          # Ensure directories exist
+          mkdir -p gh-pages-dir/reports/mobile/latest
+          mkdir -p gh-pages-dir/reports/mobile/history/build-${{ github.run_number }}
+          
+          # Copy generated reports from mobile-automation/reports
+          cp -r mobile-automation/reports/* gh-pages-dir/reports/mobile/latest/ || true
+          cp -r mobile-automation/reports/* gh-pages-dir/reports/mobile/history/build-${{ github.run_number }}/ || true
+          
+          # Commit and push
+          cd gh-pages-dir
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Publish Mobile Appium E2E Reports for Build ${{ github.run_number }}"
+          git push origin gh-pages || echo "Push failed or nothing to push"
+
+      - name: Upload Automation Evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mobile-e2e-reports
+          path: |
+            mobile-automation/reports/Excel/
+            mobile-automation/reports/HTML/
+            mobile-automation/reports/JSON/
+            mobile-automation/reports/Screenshots/
+            mobile-automation/reports/Logs/
+            mobile-automation/reports/Summary/
+          retention-days: 30
+
+      - name: Publish Test Summary
+        if: always()
+        run: |
+          cat mobile-automation/reports/Summary/summary.md >> $GITHUB_STEP_SUMMARY || echo "No summary found"

@@ -1,0 +1,19 @@
+{
+  "name": "teacher-performance-analytics-web-automation",
+  "version": "1.0.0",
+  "description": "Selenium E2E automation framework for Teacher Performance Analytics website",
+  "main": "tests/selenium-tests.js",
+  "scripts": {
+    "test": "mocha tests/selenium-tests.js --timeout 120000 --exit",
+    "report": "node utils/report-generator.js"
+  },
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "selenium-webdriver": "^4.22.0",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "mocha": "^10.4.0",
+    "chai": "^4.4.1"
+  }
+}

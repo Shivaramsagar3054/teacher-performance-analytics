@@ -1,0 +1,145 @@
+name: Live Web Deploy & Selenium E2E Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-deploy-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Website Dependencies
+        run: |
+          cd website
+          npm ci || npm install
+
+      - name: Build Application
+        run: |
+          cd website
+          npm run build
+
+      - name: Checkout or Create gh-pages Branch
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Clone the gh-pages branch or create it as an orphan branch
+          git clone --branch gh-pages https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages-dir || {
+            git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages-dir
+            cd gh-pages-dir
+            git checkout --orphan gh-pages
+            git rm -rf .
+            cd ..
+          }
+
+      - name: Copy Website Build to gh-pages
+        run: |
+          # Copy website files to the root of the gh-pages branch folder
+          cp -r website/dist/* gh-pages-dir/
+          cd gh-pages-dir
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Deploy Website Build ${{ github.run_number }}"
+          git push origin gh-pages || echo "Nothing to push"
+
+      - name: Verify Live Deployment Readiness
+        run: |
+          BASE_URL="https://Shivaramsagar3054.github.io/teacher-performance-analytics/"
+          echo "Verifying live page at $BASE_URL ..."
+          for i in {1..15}; do
+            HTTP_STATUS=$(curl -o /dev/null -s -w "%{http_code}" "$BASE_URL")
+            if [ "$HTTP_STATUS" -eq 200 ]; then
+              echo "Live deployment is online! HTTP 200 received."
+              exit 0
+            fi
+            echo "Waiting for deployment... HTTP status: $HTTP_STATUS. Retrying in 10s..."
+            sleep 10
+          done
+          echo "Deployment verification timed out."
+          exit 1
+
+      - name: Install Web Automation Dependencies
+        run: |
+          cd web-automation
+          npm ci || npm install
+
+      - name: Run Selenium E2E Tests
+        run: |
+          cd web-automation
+          npm test
+        env:
+          BASE_URL: "https://Shivaramsagar3054.github.io/teacher-performance-analytics/"
+          HEADLESS: "true"
+
+      - name: Archive Reports to gh-pages Branch
+        if: always()
+        run: |
+          cd gh-pages-dir
+          # Fetch latest remote state to prevent push conflicts
+          git pull origin gh-pages || true
+          
+          mkdir -p reports/latest
+          mkdir -p reports/history/build-${{ github.run_number }}
+          
+          # Copy generated reports from web-automation/reports
+          cp -r ../web-automation/reports/* reports/latest/ || true
+          cp -r ../web-automation/reports/* reports/history/build-${{ github.run_number }}/ || true
+          
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Publish E2E Web Reports for Build ${{ github.run_number }}"
+          git push origin gh-pages || echo "Push failed or nothing to push"
+
+      - name: Setup Pages
+        if: always()
+        uses: actions/configure-pages@v4
+
+      - name: Upload Pages Artifact
+        if: always()
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'gh-pages-dir/'
+
+      - name: Deploy to GitHub Pages
+        if: always()
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Upload Automation Evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-e2e-reports
+          path: |
+            web-automation/reports/Excel/
+            web-automation/reports/HTML/
+            web-automation/reports/JSON/
+            web-automation/reports/Screenshots/
+            web-automation/reports/Logs/
+            web-automation/reports/Summary/
+          retention-days: 30
+
+      - name: Publish Test Summary
+        if: always()
+        run: |
+          cat web-automation/reports/Summary/summary.md >> $GITHUB_STEP_SUMMARY || echo "No summary found"

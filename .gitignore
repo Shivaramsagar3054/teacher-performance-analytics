@@ -23,3 +23,7 @@ venv/
 # OS
 .DS_Store
 Thumbs.db
+
+# Reports
+web-automation/reports/
+mobile-automation/reports/
