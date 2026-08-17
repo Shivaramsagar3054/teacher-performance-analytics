@@ -1,4 +1,4 @@
-name: Android Appium E2E Tests
+name: android-apk-build.yml
 
 on:
   push:
@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   android-e2e:
-    runs-on: macos-13 # MacOS runner is required for Android hardware acceleration / KVM emulation
+    runs-on: macos-13
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -79,7 +79,6 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Clone the gh-pages branch
           git clone --branch gh-pages https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages-dir || {
             git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages-dir
             cd gh-pages-dir
@@ -88,15 +87,12 @@ jobs:
             cd ..
           }
           
-          # Ensure directories exist
           mkdir -p gh-pages-dir/reports/mobile/latest
           mkdir -p gh-pages-dir/reports/mobile/history/build-${{ github.run_number }}
           
-          # Copy generated reports from mobile-automation/reports
           cp -r mobile-automation/reports/* gh-pages-dir/reports/mobile/latest/ || true
           cp -r mobile-automation/reports/* gh-pages-dir/reports/mobile/history/build-${{ github.run_number }}/ || true
           
-          # Commit and push
           cd gh-pages-dir
           git add .
           git diff-index --quiet HEAD || git commit -m "Publish Mobile Appium E2E Reports for Build ${{ github.run_number }}"

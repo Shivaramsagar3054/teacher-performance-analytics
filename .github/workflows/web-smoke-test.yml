@@ -1,0 +1,26 @@
+name: web-smoke-test.yml
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Live Website Status
+        run: |
+          URL="https://Shivaramsagar3054.github.io/teacher-performance-analytics/"
+          echo "Sending request to $URL"
+          STATUS_CODE=$(curl -o /dev/null -s -w "%{http_code}" "$URL")
+          echo "Received Status: $STATUS_CODE"
+          if [ "$STATUS_CODE" -eq 200 ]; then
+            echo "Website is online and healthy!"
+            exit 0
+          else
+            echo "Website returned error code: $STATUS_CODE"
+            exit 1
+          fi

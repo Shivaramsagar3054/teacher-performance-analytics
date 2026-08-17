@@ -1,4 +1,4 @@
-name: Live Web Deploy & Selenium E2E Tests
+name: selenium-login.yml
 
 on:
   push:
@@ -45,7 +45,6 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Clone the gh-pages branch or create it as an orphan branch
           git clone --branch gh-pages https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages-dir || {
             git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages-dir
             cd gh-pages-dir
@@ -56,7 +55,6 @@ jobs:
 
       - name: Copy Website Build to gh-pages
         run: |
-          # Copy website files to the root of the gh-pages branch folder
           cp -r website/dist/* gh-pages-dir/
           cd gh-pages-dir
           git add .
@@ -96,13 +94,11 @@ jobs:
         if: always()
         run: |
           cd gh-pages-dir
-          # Fetch latest remote state to prevent push conflicts
           git pull origin gh-pages || true
           
           mkdir -p reports/latest
           mkdir -p reports/history/build-${{ github.run_number }}
           
-          # Copy generated reports from web-automation/reports
           cp -r ../web-automation/reports/* reports/latest/ || true
           cp -r ../web-automation/reports/* reports/history/build-${{ github.run_number }}/ || true
           

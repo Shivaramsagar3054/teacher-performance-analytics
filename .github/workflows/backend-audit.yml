@@ -1,4 +1,4 @@
-name: Django Backend Security Review & Unit Testing
+name: backend-audit.yml
 
 on:
   push:
