@@ -163,12 +163,14 @@ jobs:
       - name: Setup Pages
         if: always()
         uses: actions/configure-pages@v4
+        continue-on-error: true
 
       - name: Upload Pages Artifact
         if: always()
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'gh-pages-dir/'
+        continue-on-error: true
 
       - name: Deploy to GitHub Pages
         if: always()
