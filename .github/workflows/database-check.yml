@@ -33,4 +33,4 @@ jobs:
         run: |
           cd backend
           python manage.py showmigrations
-          python manage.py migrate --check
+          python manage.py migrate

@@ -114,8 +114,11 @@ jobs:
 
       - name: Run Performance / Load Tests
         run: |
-          # Start Django dev server in background
           cd backend
+          # Apply database migrations to initialize tables
+          python manage.py migrate
+          
+          # Start Django dev server in background
           python manage.py runserver 127.0.0.1:8000 &
           SERVER_PID=$!
           
@@ -132,6 +135,7 @@ jobs:
           # Install k6 locally
           curl -L https://github.com/grafana/k6/releases/download/v0.50.0/k6-v0.50.0-linux-amd64.tar.gz | tar -xz
           mv k6-v0.50.0-linux-amd64/k6 .
+          chmod +x k6
           
           # Execute load test script
           echo "Running k6 baseline load test (100 users, 1 minute)..."
