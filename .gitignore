@@ -25,5 +25,5 @@ venv/
 Thumbs.db
 
 # Reports
-web-automation/reports/
-mobile-automation/reports/
+automation/web-automation/reports/
+automation/mobile-automation/reports/

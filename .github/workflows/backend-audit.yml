@@ -42,6 +42,11 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install System Dependencies for mysqlclient
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y default-libmysqlclient-dev build-essential pkg-config
+
       - name: Install Python Dependencies
         run: |
           cd backend
@@ -104,7 +109,7 @@ jobs:
           
           # Execute load test script
           echo "Running k6 baseline load test (100 users, 1 minute)..."
-          ./k6 run "../Vulnerability Test Results/k6-load-test.js" --env BASE_URL=http://127.0.0.1:8000
+          ./k6 run "../automation/vulnerability-test-results/k6-load-test.js" --env BASE_URL=http://127.0.0.1:8000
           
           # Stop server
           kill $SERVER_PID
@@ -112,7 +117,7 @@ jobs:
       - name: Generate Security spreadsheets
         if: always()
         run: |
-          node "Vulnerability Test Results/generate-security-reports.js"
+          node "automation/vulnerability-test-results/generate-security-reports.js"
 
       - name: Upload Security Findings Spreadsheet & Artifacts
         if: always()
@@ -120,10 +125,10 @@ jobs:
         with:
           name: security-audit-reports
           path: |
-            Vulnerability Test Results/
+            automation/vulnerability-test-results/
           retention-days: 30
 
       - name: Publish Security Summary to Step Summary
         if: always()
         run: |
-          cat "Vulnerability Test Results/executive-summary.md" >> $GITHUB_STEP_SUMMARY || echo "No summary found"
+          cat "automation/vulnerability-test-results/executive-summary.md" >> $GITHUB_STEP_SUMMARY || echo "No summary found"

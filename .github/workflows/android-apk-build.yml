@@ -52,7 +52,7 @@ jobs:
 
       - name: Install Mobile Automation Dependencies
         run: |
-          cd mobile-automation
+          cd automation/mobile-automation
           npm install
 
       - name: Execute E2E Tests in Android Emulator
@@ -66,7 +66,7 @@ jobs:
           disable-animations: true
           script: |
             adb install mobile-app/android/app/build/outputs/apk/debug/app-debug.apk
-            cd mobile-automation
+            cd automation/mobile-automation
             npm test
         env:
           ANDROID_DEVICE_NAME: "emulator-5554"
@@ -90,8 +90,8 @@ jobs:
           mkdir -p gh-pages-dir/reports/mobile/latest
           mkdir -p gh-pages-dir/reports/mobile/history/build-${{ github.run_number }}
           
-          cp -r mobile-automation/reports/* gh-pages-dir/reports/mobile/latest/ || true
-          cp -r mobile-automation/reports/* gh-pages-dir/reports/mobile/history/build-${{ github.run_number }}/ || true
+          cp -r automation/mobile-automation/reports/* gh-pages-dir/reports/mobile/latest/ || true
+          cp -r automation/mobile-automation/reports/* gh-pages-dir/reports/mobile/history/build-${{ github.run_number }}/ || true
           
           cd gh-pages-dir
           git add .
@@ -104,15 +104,15 @@ jobs:
         with:
           name: mobile-e2e-reports
           path: |
-            mobile-automation/reports/Excel/
-            mobile-automation/reports/HTML/
-            mobile-automation/reports/JSON/
-            mobile-automation/reports/Screenshots/
-            mobile-automation/reports/Logs/
-            mobile-automation/reports/Summary/
+            automation/mobile-automation/reports/Excel/
+            automation/mobile-automation/reports/HTML/
+            automation/mobile-automation/reports/JSON/
+            automation/mobile-automation/reports/Screenshots/
+            automation/mobile-automation/reports/Logs/
+            automation/mobile-automation/reports/Summary/
           retention-days: 30
 
       - name: Publish Test Summary
         if: always()
         run: |
-          cat mobile-automation/reports/Summary/summary.md >> $GITHUB_STEP_SUMMARY || echo "No summary found"
+          cat automation/mobile-automation/reports/Summary/summary.md >> $GITHUB_STEP_SUMMARY || echo "No summary found"

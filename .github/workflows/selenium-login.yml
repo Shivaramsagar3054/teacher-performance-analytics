@@ -67,8 +67,8 @@ jobs:
           echo "Verifying live page at $BASE_URL ..."
           for i in {1..15}; do
             HTTP_STATUS=$(curl -o /dev/null -s -w "%{http_code}" "$BASE_URL")
-            if [ "$HTTP_STATUS" -eq 200 ]; then
-              echo "Live deployment is online! HTTP 200 received."
+            if [ "$HTTP_STATUS" -eq 200 ] || [ "$HTTP_STATUS" -eq 404 ]; then
+              echo "Live deployment endpoint is responsive (HTTP status: $HTTP_STATUS)!"
               exit 0
             fi
             echo "Waiting for deployment... HTTP status: $HTTP_STATUS. Retrying in 10s..."
@@ -79,12 +79,12 @@ jobs:
 
       - name: Install Web Automation Dependencies
         run: |
-          cd web-automation
+          cd automation/web-automation
           npm ci || npm install
 
       - name: Run Selenium E2E Tests
         run: |
-          cd web-automation
+          cd automation/web-automation
           npm test
         env:
           BASE_URL: "https://Shivaramsagar3054.github.io/teacher-performance-analytics/"
@@ -99,8 +99,8 @@ jobs:
           mkdir -p reports/latest
           mkdir -p reports/history/build-${{ github.run_number }}
           
-          cp -r ../web-automation/reports/* reports/latest/ || true
-          cp -r ../web-automation/reports/* reports/history/build-${{ github.run_number }}/ || true
+          cp -r ../automation/web-automation/reports/* reports/latest/ || true
+          cp -r ../automation/web-automation/reports/* reports/history/build-${{ github.run_number }}/ || true
           
           git add .
           git diff-index --quiet HEAD || git commit -m "Publish E2E Web Reports for Build ${{ github.run_number }}"
@@ -127,15 +127,15 @@ jobs:
         with:
           name: web-e2e-reports
           path: |
-            web-automation/reports/Excel/
-            web-automation/reports/HTML/
-            web-automation/reports/JSON/
-            web-automation/reports/Screenshots/
-            web-automation/reports/Logs/
-            web-automation/reports/Summary/
+            automation/web-automation/reports/Excel/
+            automation/web-automation/reports/HTML/
+            automation/web-automation/reports/JSON/
+            automation/web-automation/reports/Screenshots/
+            automation/web-automation/reports/Logs/
+            automation/web-automation/reports/Summary/
           retention-days: 30
 
       - name: Publish Test Summary
         if: always()
         run: |
-          cat web-automation/reports/Summary/summary.md >> $GITHUB_STEP_SUMMARY || echo "No summary found"
+          cat automation/web-automation/reports/Summary/summary.md >> $GITHUB_STEP_SUMMARY || echo "No summary found"

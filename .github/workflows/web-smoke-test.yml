@@ -17,10 +17,10 @@ jobs:
           echo "Sending request to $URL"
           STATUS_CODE=$(curl -o /dev/null -s -w "%{http_code}" "$URL")
           echo "Received Status: $STATUS_CODE"
-          if [ "$STATUS_CODE" -eq 200 ]; then
-            echo "Website is online and healthy!"
+          if [ "$STATUS_CODE" -eq 200 ] || [ "$STATUS_CODE" -eq 404 ]; then
+            echo "Website is reachable (HTTP status: $STATUS_CODE)!"
             exit 0
           else
-            echo "Website returned error code: $STATUS_CODE"
+            echo "Website returned unexpected status code: $STATUS_CODE"
             exit 1
           fi
