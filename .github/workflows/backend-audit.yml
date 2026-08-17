@@ -172,6 +172,7 @@ jobs:
           name: Security_Findings
           path: automation/vulnerability-test-results/findings.xlsx
           retention-days: 30
+          if-no-files-found: warn
 
       - name: Upload Excel Endpoint Inventory
         uses: actions/upload-artifact@v4
@@ -179,6 +180,7 @@ jobs:
           name: Endpoint_Inventory
           path: automation/vulnerability-test-results/endpoint-inventory.xlsx
           retention-days: 30
+          if-no-files-found: warn
 
       - name: Upload Excel Test Cases
         uses: actions/upload-artifact@v4
@@ -186,6 +188,7 @@ jobs:
           name: Vulnerability_Test_Cases
           path: automation/vulnerability-test-results/test-cases.xlsx
           retention-days: 30
+          if-no-files-found: warn
 
       - name: Upload Excel Dependency Vulnerabilities
         uses: actions/upload-artifact@v4
@@ -193,6 +196,7 @@ jobs:
           name: Dependency_Vulnerabilities
           path: automation/vulnerability-test-results/dependency-vulnerabilities.xlsx
           retention-days: 30
+          if-no-files-found: warn
 
       - name: Publish Security Summary to Step Summary
         run: |

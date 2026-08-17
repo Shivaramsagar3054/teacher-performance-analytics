@@ -185,6 +185,7 @@ jobs:
           name: Automation_Test_Report
           path: automation/web-automation/reports/Excel/Automation_Test_Report.xlsx
           retention-days: 30
+          if-no-files-found: warn
 
       - name: Upload Excel Passed Test Cases
         if: always()
@@ -193,6 +194,7 @@ jobs:
           name: Passed_Test_Cases
           path: automation/web-automation/reports/Excel/Passed_Test_Cases.xlsx
           retention-days: 30
+          if-no-files-found: warn
 
       - name: Upload Excel Failed Test Cases
         if: always()
@@ -201,6 +203,7 @@ jobs:
           name: Failed_Test_Cases
           path: automation/web-automation/reports/Excel/Failed_Test_Cases.xlsx
           retention-days: 30
+          if-no-files-found: warn
 
       - name: Upload Excel Summary Report
         if: always()
@@ -209,6 +212,7 @@ jobs:
           name: Summary_Report
           path: automation/web-automation/reports/Excel/Summary_Report.xlsx
           retention-days: 30
+          if-no-files-found: warn
 
       - name: Publish Test Summary
         if: always()

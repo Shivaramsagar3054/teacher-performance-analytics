@@ -156,6 +156,7 @@ jobs:
         with:
           name: raw-reports
           path: automation/mobile-automation/reports
+        continue-on-error: true
 
       - name: Archive Mobile Reports to gh-pages Branch
         run: |
@@ -188,6 +189,7 @@ jobs:
           name: Mobile_Automation_Test_Report
           path: automation/mobile-automation/reports/Excel/Automation_Test_Report.xlsx
           retention-days: 30
+          if-no-files-found: warn
 
       - name: Upload Excel Passed Test Cases
         uses: actions/upload-artifact@v4
@@ -195,6 +197,7 @@ jobs:
           name: Mobile_Passed_Test_Cases
           path: automation/mobile-automation/reports/Excel/Passed_Test_Cases.xlsx
           retention-days: 30
+          if-no-files-found: warn
 
       - name: Upload Excel Failed Test Cases
         uses: actions/upload-artifact@v4
@@ -202,6 +205,7 @@ jobs:
           name: Mobile_Failed_Test_Cases
           path: automation/mobile-automation/reports/Excel/Failed_Test_Cases.xlsx
           retention-days: 30
+          if-no-files-found: warn
 
       - name: Upload Excel Execution Summary
         uses: actions/upload-artifact@v4
@@ -209,6 +213,7 @@ jobs:
           name: Mobile_Execution_Summary
           path: automation/mobile-automation/reports/Excel/Execution_Summary.xlsx
           retention-days: 30
+          if-no-files-found: warn
 
       - name: Publish Test Summary
         run: |
