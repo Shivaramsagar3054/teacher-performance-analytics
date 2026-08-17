@@ -13,7 +13,7 @@ permissions:
 jobs:
   build-apk:
     name: Build Android APK
-    runs-on: macos-13
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -39,6 +39,8 @@ jobs:
           cd mobile-app/android
           chmod +x gradlew
           ./gradlew assembleDebug
+        env:
+          GRADLE_OPTS: -Dorg.gradle.jvmargs="-Xmx2048m -XX:MaxMetaspaceSize=512m" -Dorg.gradle.daemon=false
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
@@ -73,7 +75,7 @@ jobs:
   run-tests:
     name: Run Appium Tests on Emulator
     needs: build-apk
-    runs-on: macos-13
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -110,6 +112,12 @@ jobs:
         run: |
           cd automation/mobile-automation
           npm ci || npm install
+
+      - name: Enable KVM group permissions
+        run: |
+          echo 'egrep -c "(vmx|svm)" /proc/cpuinfo'
+          egrep -c "(vmx|svm)" /proc/cpuinfo || true
+          sudo adduser $USER kvm
 
       - name: Execute E2E Tests in Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
