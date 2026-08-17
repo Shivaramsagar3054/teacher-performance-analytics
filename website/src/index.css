@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1E3A8A; /* Blue 900 */
+  --color-primary-dark: #0f172a; /* Slate 900 */
+  --color-secondary: #FACC15; /* Yellow 400 */
+  --color-secondary-hover: #eab308; /* Yellow 500 */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-800 font-sans antialiased m-0;
+  }
+}

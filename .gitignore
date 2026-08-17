@@ -1,0 +1,25 @@
+# React / React Native
+node_modules/
+.expo/
+dist/
+build/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Django
+__pycache__/
+*.py[cod]
+*.sqlite3
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
