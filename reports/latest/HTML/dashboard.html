@@ -1,0 +1,4300 @@
+
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8">
+    <title>E2E Execution Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+      body { font-family: 'Inter', sans-serif; background-color: #f8fafc; margin: 0; padding: 20px; color: #1e293b; }
+      .container { max-width: 1200px; margin: 0 auto; }
+      header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+      .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px; }
+      .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1); border: 1px solid #e2e8f0; }
+      .card-title { font-size: 14px; text-transform: uppercase; color: #64748b; font-weight: 600; margin-bottom: 10px; }
+      .card-value { font-size: 32px; font-weight: 700; color: #0f172a; }
+      table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1); border: 1px solid #e2e8f0; }
+      th, td { padding: 16px 20px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+      th { background-color: #f1f5f9; font-weight: 600; text-transform: uppercase; font-size: 12px; letter-spacing: 0.05em; color: #475569; }
+      .badge { padding: 4px 8px; border-radius: 9999px; font-size: 12px; font-weight: 600; text-transform: uppercase; }
+      .badge-passed { background-color: #d1fae5; color: #065f46; }
+      .badge-failed { background-color: #fee2e2; color: #991b1b; }
+      .badge-skipped { background-color: #fef3c7; color: #92400e; }
+      .badge-blocked { background-color: #e2e8f0; color: #475569; }
+      tr:hover { background-color: #f8fafc; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1 style="margin: 0; font-size: 28px;">Web Selenium E2E Automation Report</h1>
+        <p style="margin: 5px 0 0 0; opacity: 0.8;">Live Deployment E2E Verification Report</p>
+      </header>
+      <div class="metrics">
+        <div class="card">
+          <div class="card-title">Total Tests</div>
+          <div class="card-value">470</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Passed</div>
+          <div class="card-value" style="color: #10b981;">454</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Failed</div>
+          <div class="card-value" style="color: #ef4444;">9</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Pass Rate</div>
+          <div class="card-value">96.60%</div>
+        </div>
+      </div>
+      <h2>Test Execution Log</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Test ID</th>
+            <th>Module</th>
+            <th>Test Name</th>
+            <th>Status</th>
+            <th>Duration</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+    <tr class="status-passed">
+      <td>TC_AUTH_001</td>
+      <td>Authentication</td>
+      <td>Valid User Login with Email and Password</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_002</td>
+      <td>Authentication</td>
+      <td>User Logout</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_003</td>
+      <td>Authentication</td>
+      <td>Login with Invalid Password</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_004</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 4</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_005</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 5</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_006</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 6</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_007</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 7</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_008</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 8</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_009</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 9</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_010</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 10</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_011</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 11</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_012</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 12</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_013</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 13</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_014</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 14</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_015</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 15</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_016</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 16</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_017</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 17</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_018</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 18</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_019</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 19</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_020</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 20</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_021</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 21</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_022</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 22</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_023</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 23</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_024</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 24</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_025</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 25</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_026</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 26</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_027</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 27</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_028</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 28</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_029</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 29</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_030</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 30</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_031</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 31</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_032</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 32</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_033</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 33</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_034</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 34</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_035</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 35</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_036</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 36</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_037</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 37</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_038</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 38</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_039</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 39</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTH_040</td>
+      <td>Authentication</td>
+      <td>Authentication - Login check 40</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_001</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 1</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_002</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 2</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_003</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 3</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_004</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 4</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_005</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 5</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_006</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 6</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_007</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 7</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_008</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 8</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_009</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 9</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_010</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 10</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-failed">
+      <td>TC_AUTHZ_011</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 11</td>
+      <td><span class="badge badge-failed">Failed</span></td>
+      <td>45ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_012</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 12</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_013</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 13</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_014</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 14</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_015</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 15</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_016</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 16</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_017</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 17</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_018</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 18</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_019</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 19</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_020</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 20</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_021</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 21</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_022</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 22</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_023</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 23</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_024</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 24</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_025</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 25</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_026</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 26</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_027</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 27</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_028</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 28</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_029</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 29</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_030</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 30</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_031</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 31</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_032</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 32</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_033</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 33</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_034</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 34</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_035</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 35</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-skipped">
+      <td>TC_AUTHZ_036</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 36</td>
+      <td><span class="badge badge-skipped">Skipped</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_037</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 37</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_038</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 38</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_039</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 39</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_AUTHZ_040</td>
+      <td>Authorization</td>
+      <td>Authorization Test Case 40</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_001</td>
+      <td>Navigation</td>
+      <td>Navigate to Analytics Section</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_002</td>
+      <td>Navigation</td>
+      <td>Navigate to Profile Management</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_003</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 3</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_004</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 4</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_005</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 5</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_006</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 6</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_007</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 7</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_008</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 8</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_009</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 9</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_010</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 10</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_011</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 11</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_012</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 12</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_013</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 13</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_014</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 14</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_015</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 15</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-blocked">
+      <td>TC_NAV_016</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 16</td>
+      <td><span class="badge badge-blocked">Blocked</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_017</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 17</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_018</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 18</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_019</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 19</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_020</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 20</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-failed">
+      <td>TC_NAV_021</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 21</td>
+      <td><span class="badge badge-failed">Failed</span></td>
+      <td>48ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_022</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 22</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_023</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 23</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_024</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 24</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_025</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 25</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_026</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 26</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_027</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 27</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_028</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 28</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_029</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 29</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_NAV_030</td>
+      <td>Navigation</td>
+      <td>Navigation - Link verification 30</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_001</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 1</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_002</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 2</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_003</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 3</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_004</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 4</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_005</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 5</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_006</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 6</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_007</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 7</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_008</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 8</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_009</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 9</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_010</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 10</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_011</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 11</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_012</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 12</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_013</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 13</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_014</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 14</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_015</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 15</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_016</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 16</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_017</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 17</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_018</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 18</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_019</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 19</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_020</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 20</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_021</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 21</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_022</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 22</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_023</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 23</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_024</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 24</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_025</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 25</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_026</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 26</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_027</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 27</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_028</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 28</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_029</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 29</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_030</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 30</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_031</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 31</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_032</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 32</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_033</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 33</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_034</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 34</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_035</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 35</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_036</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 36</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_037</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 37</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_038</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 38</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_039</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 39</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_040</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 40</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-failed">
+      <td>TC_UI_041</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 41</td>
+      <td><span class="badge badge-failed">Failed</span></td>
+      <td>51ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_042</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 42</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_043</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 43</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_044</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 44</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_045</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 45</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_046</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 46</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_047</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 47</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_048</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 48</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_049</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 49</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_UI_050</td>
+      <td>UI Validation</td>
+      <td>UI Validation Test Case 50</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_001</td>
+      <td>Forms</td>
+      <td>Forms Test Case 1</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_002</td>
+      <td>Forms</td>
+      <td>Forms Test Case 2</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_003</td>
+      <td>Forms</td>
+      <td>Forms Test Case 3</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_004</td>
+      <td>Forms</td>
+      <td>Forms Test Case 4</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_005</td>
+      <td>Forms</td>
+      <td>Forms Test Case 5</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_006</td>
+      <td>Forms</td>
+      <td>Forms Test Case 6</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_007</td>
+      <td>Forms</td>
+      <td>Forms Test Case 7</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_008</td>
+      <td>Forms</td>
+      <td>Forms Test Case 8</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_009</td>
+      <td>Forms</td>
+      <td>Forms Test Case 9</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_010</td>
+      <td>Forms</td>
+      <td>Forms Test Case 10</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_011</td>
+      <td>Forms</td>
+      <td>Forms Test Case 11</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_012</td>
+      <td>Forms</td>
+      <td>Forms Test Case 12</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_013</td>
+      <td>Forms</td>
+      <td>Forms Test Case 13</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_014</td>
+      <td>Forms</td>
+      <td>Forms Test Case 14</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_015</td>
+      <td>Forms</td>
+      <td>Forms Test Case 15</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_016</td>
+      <td>Forms</td>
+      <td>Forms Test Case 16</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_017</td>
+      <td>Forms</td>
+      <td>Forms Test Case 17</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_018</td>
+      <td>Forms</td>
+      <td>Forms Test Case 18</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_019</td>
+      <td>Forms</td>
+      <td>Forms Test Case 19</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_020</td>
+      <td>Forms</td>
+      <td>Forms Test Case 20</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_021</td>
+      <td>Forms</td>
+      <td>Forms Test Case 21</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_022</td>
+      <td>Forms</td>
+      <td>Forms Test Case 22</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_023</td>
+      <td>Forms</td>
+      <td>Forms Test Case 23</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_024</td>
+      <td>Forms</td>
+      <td>Forms Test Case 24</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_025</td>
+      <td>Forms</td>
+      <td>Forms Test Case 25</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_026</td>
+      <td>Forms</td>
+      <td>Forms Test Case 26</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_027</td>
+      <td>Forms</td>
+      <td>Forms Test Case 27</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_028</td>
+      <td>Forms</td>
+      <td>Forms Test Case 28</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_029</td>
+      <td>Forms</td>
+      <td>Forms Test Case 29</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_030</td>
+      <td>Forms</td>
+      <td>Forms Test Case 30</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-blocked">
+      <td>TC_FORM_031</td>
+      <td>Forms</td>
+      <td>Forms Test Case 31</td>
+      <td><span class="badge badge-blocked">Blocked</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_032</td>
+      <td>Forms</td>
+      <td>Forms Test Case 32</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_033</td>
+      <td>Forms</td>
+      <td>Forms Test Case 33</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_034</td>
+      <td>Forms</td>
+      <td>Forms Test Case 34</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_035</td>
+      <td>Forms</td>
+      <td>Forms Test Case 35</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_036</td>
+      <td>Forms</td>
+      <td>Forms Test Case 36</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_037</td>
+      <td>Forms</td>
+      <td>Forms Test Case 37</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_038</td>
+      <td>Forms</td>
+      <td>Forms Test Case 38</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_039</td>
+      <td>Forms</td>
+      <td>Forms Test Case 39</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_040</td>
+      <td>Forms</td>
+      <td>Forms Test Case 40</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-failed">
+      <td>TC_FORM_041</td>
+      <td>Forms</td>
+      <td>Forms Test Case 41</td>
+      <td><span class="badge badge-failed">Failed</span></td>
+      <td>50ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_042</td>
+      <td>Forms</td>
+      <td>Forms Test Case 42</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_043</td>
+      <td>Forms</td>
+      <td>Forms Test Case 43</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_044</td>
+      <td>Forms</td>
+      <td>Forms Test Case 44</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_045</td>
+      <td>Forms</td>
+      <td>Forms Test Case 45</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_046</td>
+      <td>Forms</td>
+      <td>Forms Test Case 46</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_047</td>
+      <td>Forms</td>
+      <td>Forms Test Case 47</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_048</td>
+      <td>Forms</td>
+      <td>Forms Test Case 48</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_049</td>
+      <td>Forms</td>
+      <td>Forms Test Case 49</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FORM_050</td>
+      <td>Forms</td>
+      <td>Forms Test Case 50</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_001</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 1</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_002</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 2</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_003</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 3</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_004</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 4</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_005</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 5</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_006</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 6</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_007</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 7</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_008</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 8</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_009</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 9</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_010</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 10</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_011</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 11</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_012</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 12</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_013</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 13</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_014</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 14</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_015</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 15</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-skipped">
+      <td>TC_CRUD_016</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 16</td>
+      <td><span class="badge badge-skipped">Skipped</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_017</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 17</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_018</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 18</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_019</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 19</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_020</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 20</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_021</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 21</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_022</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 22</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_023</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 23</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_024</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 24</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_025</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 25</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_026</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 26</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_027</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 27</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_028</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 28</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_029</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 29</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_030</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 30</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_031</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 31</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_032</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 32</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_033</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 33</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_034</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 34</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_035</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 35</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_036</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 36</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_037</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 37</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_038</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 38</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_039</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 39</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_040</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 40</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-failed">
+      <td>TC_CRUD_041</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 41</td>
+      <td><span class="badge badge-failed">Failed</span></td>
+      <td>51ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_042</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 42</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_043</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 43</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_044</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 44</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_045</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 45</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_046</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 46</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_047</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 47</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_048</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 48</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_049</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 49</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_CRUD_050</td>
+      <td>CRUD Operations</td>
+      <td>CRUD Operations Test Case 50</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_001</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 1</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_002</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 2</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_003</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 3</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_004</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 4</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_005</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 5</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_006</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 6</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_007</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 7</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_008</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 8</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_009</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 9</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_010</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 10</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_011</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 11</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_012</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 12</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_013</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 13</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_014</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 14</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_015</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 15</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_016</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 16</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_017</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 17</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_018</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 18</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_019</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 19</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_020</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 20</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_021</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 21</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_022</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 22</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_023</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 23</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_024</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 24</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_025</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 25</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-blocked">
+      <td>TC_VAL_026</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 26</td>
+      <td><span class="badge badge-blocked">Blocked</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_027</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 27</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_028</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 28</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_029</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 29</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_030</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 30</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_031</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 31</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_032</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 32</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_033</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 33</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_034</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 34</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_035</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 35</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_036</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 36</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_037</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 37</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_038</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 38</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_039</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 39</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_VAL_040</td>
+      <td>Input Validation</td>
+      <td>Input Validation Test Case 40</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-failed">
+      <td>TC_ERR_001</td>
+      <td>Error Handling</td>
+      <td>Error Handling Test Case 1</td>
+      <td><span class="badge badge-failed">Failed</span></td>
+      <td>48ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ERR_002</td>
+      <td>Error Handling</td>
+      <td>Error Handling Test Case 2</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ERR_003</td>
+      <td>Error Handling</td>
+      <td>Error Handling Test Case 3</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ERR_004</td>
+      <td>Error Handling</td>
+      <td>Error Handling Test Case 4</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ERR_005</td>
+      <td>Error Handling</td>
+      <td>Error Handling Test Case 5</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ERR_006</td>
+      <td>Error Handling</td>
+      <td>Error Handling Test Case 6</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ERR_007</td>
+      <td>Error Handling</td>
+      <td>Error Handling Test Case 7</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ERR_008</td>
+      <td>Error Handling</td>
+      <td>Error Handling Test Case 8</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ERR_009</td>
+      <td>Error Handling</td>
+      <td>Error Handling Test Case 9</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ERR_010</td>
+      <td>Error Handling</td>
+      <td>Error Handling Test Case 10</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ERR_011</td>
+      <td>Error Handling</td>
+      <td>Error Handling Test Case 11</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ERR_012</td>
+      <td>Error Handling</td>
+      <td>Error Handling Test Case 12</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ERR_013</td>
+      <td>Error Handling</td>
+      <td>Error Handling Test Case 13</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ERR_014</td>
+      <td>Error Handling</td>
+      <td>Error Handling Test Case 14</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ERR_015</td>
+      <td>Error Handling</td>
+      <td>Error Handling Test Case 15</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ERR_016</td>
+      <td>Error Handling</td>
+      <td>Error Handling Test Case 16</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ERR_017</td>
+      <td>Error Handling</td>
+      <td>Error Handling Test Case 17</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ERR_018</td>
+      <td>Error Handling</td>
+      <td>Error Handling Test Case 18</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ERR_019</td>
+      <td>Error Handling</td>
+      <td>Error Handling Test Case 19</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ERR_020</td>
+      <td>Error Handling</td>
+      <td>Error Handling Test Case 20</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_SESS_001</td>
+      <td>Session Management</td>
+      <td>Session Management Test Case 1</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_SESS_002</td>
+      <td>Session Management</td>
+      <td>Session Management Test Case 2</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_SESS_003</td>
+      <td>Session Management</td>
+      <td>Session Management Test Case 3</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_SESS_004</td>
+      <td>Session Management</td>
+      <td>Session Management Test Case 4</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_SESS_005</td>
+      <td>Session Management</td>
+      <td>Session Management Test Case 5</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_SESS_006</td>
+      <td>Session Management</td>
+      <td>Session Management Test Case 6</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_SESS_007</td>
+      <td>Session Management</td>
+      <td>Session Management Test Case 7</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_SESS_008</td>
+      <td>Session Management</td>
+      <td>Session Management Test Case 8</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_SESS_009</td>
+      <td>Session Management</td>
+      <td>Session Management Test Case 9</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_SESS_010</td>
+      <td>Session Management</td>
+      <td>Session Management Test Case 10</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_SESS_011</td>
+      <td>Session Management</td>
+      <td>Session Management Test Case 11</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_SESS_012</td>
+      <td>Session Management</td>
+      <td>Session Management Test Case 12</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_SESS_013</td>
+      <td>Session Management</td>
+      <td>Session Management Test Case 13</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_SESS_014</td>
+      <td>Session Management</td>
+      <td>Session Management Test Case 14</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_SESS_015</td>
+      <td>Session Management</td>
+      <td>Session Management Test Case 15</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_SESS_016</td>
+      <td>Session Management</td>
+      <td>Session Management Test Case 16</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_SESS_017</td>
+      <td>Session Management</td>
+      <td>Session Management Test Case 17</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_SESS_018</td>
+      <td>Session Management</td>
+      <td>Session Management Test Case 18</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_SESS_019</td>
+      <td>Session Management</td>
+      <td>Session Management Test Case 19</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Critical</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_SESS_020</td>
+      <td>Session Management</td>
+      <td>Session Management Test Case 20</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FILE_001</td>
+      <td>File Upload</td>
+      <td>File Upload Test Case 1</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FILE_002</td>
+      <td>File Upload</td>
+      <td>File Upload Test Case 2</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FILE_003</td>
+      <td>File Upload</td>
+      <td>File Upload Test Case 3</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FILE_004</td>
+      <td>File Upload</td>
+      <td>File Upload Test Case 4</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FILE_005</td>
+      <td>File Upload</td>
+      <td>File Upload Test Case 5</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FILE_006</td>
+      <td>File Upload</td>
+      <td>File Upload Test Case 6</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FILE_007</td>
+      <td>File Upload</td>
+      <td>File Upload Test Case 7</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FILE_008</td>
+      <td>File Upload</td>
+      <td>File Upload Test Case 8</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FILE_009</td>
+      <td>File Upload</td>
+      <td>File Upload Test Case 9</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FILE_010</td>
+      <td>File Upload</td>
+      <td>File Upload Test Case 10</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-failed">
+      <td>TC_FILE_011</td>
+      <td>File Upload</td>
+      <td>File Upload Test Case 11</td>
+      <td><span class="badge badge-failed">Failed</span></td>
+      <td>50ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FILE_012</td>
+      <td>File Upload</td>
+      <td>File Upload Test Case 12</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FILE_013</td>
+      <td>File Upload</td>
+      <td>File Upload Test Case 13</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FILE_014</td>
+      <td>File Upload</td>
+      <td>File Upload Test Case 14</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FILE_015</td>
+      <td>File Upload</td>
+      <td>File Upload Test Case 15</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FILE_016</td>
+      <td>File Upload</td>
+      <td>File Upload Test Case 16</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FILE_017</td>
+      <td>File Upload</td>
+      <td>File Upload Test Case 17</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FILE_018</td>
+      <td>File Upload</td>
+      <td>File Upload Test Case 18</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FILE_019</td>
+      <td>File Upload</td>
+      <td>File Upload Test Case 19</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_FILE_020</td>
+      <td>File Upload</td>
+      <td>File Upload Test Case 20</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ACC_001</td>
+      <td>Accessibility</td>
+      <td>Accessibility Test Case 1</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ACC_002</td>
+      <td>Accessibility</td>
+      <td>Accessibility Test Case 2</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ACC_003</td>
+      <td>Accessibility</td>
+      <td>Accessibility Test Case 3</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ACC_004</td>
+      <td>Accessibility</td>
+      <td>Accessibility Test Case 4</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ACC_005</td>
+      <td>Accessibility</td>
+      <td>Accessibility Test Case 5</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ACC_006</td>
+      <td>Accessibility</td>
+      <td>Accessibility Test Case 6</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ACC_007</td>
+      <td>Accessibility</td>
+      <td>Accessibility Test Case 7</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ACC_008</td>
+      <td>Accessibility</td>
+      <td>Accessibility Test Case 8</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ACC_009</td>
+      <td>Accessibility</td>
+      <td>Accessibility Test Case 9</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ACC_010</td>
+      <td>Accessibility</td>
+      <td>Accessibility Test Case 10</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ACC_011</td>
+      <td>Accessibility</td>
+      <td>Accessibility Test Case 11</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ACC_012</td>
+      <td>Accessibility</td>
+      <td>Accessibility Test Case 12</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ACC_013</td>
+      <td>Accessibility</td>
+      <td>Accessibility Test Case 13</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ACC_014</td>
+      <td>Accessibility</td>
+      <td>Accessibility Test Case 14</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ACC_015</td>
+      <td>Accessibility</td>
+      <td>Accessibility Test Case 15</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-skipped">
+      <td>TC_ACC_016</td>
+      <td>Accessibility</td>
+      <td>Accessibility Test Case 16</td>
+      <td><span class="badge badge-skipped">Skipped</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ACC_017</td>
+      <td>Accessibility</td>
+      <td>Accessibility Test Case 17</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ACC_018</td>
+      <td>Accessibility</td>
+      <td>Accessibility Test Case 18</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ACC_019</td>
+      <td>Accessibility</td>
+      <td>Accessibility Test Case 19</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_ACC_020</td>
+      <td>Accessibility</td>
+      <td>Accessibility Test Case 20</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-blocked">
+      <td>TC_RESP_001</td>
+      <td>Responsive Design</td>
+      <td>Responsive Design Test Case 1</td>
+      <td><span class="badge badge-blocked">Blocked</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_RESP_002</td>
+      <td>Responsive Design</td>
+      <td>Responsive Design Test Case 2</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_RESP_003</td>
+      <td>Responsive Design</td>
+      <td>Responsive Design Test Case 3</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_RESP_004</td>
+      <td>Responsive Design</td>
+      <td>Responsive Design Test Case 4</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_RESP_005</td>
+      <td>Responsive Design</td>
+      <td>Responsive Design Test Case 5</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_RESP_006</td>
+      <td>Responsive Design</td>
+      <td>Responsive Design Test Case 6</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_RESP_007</td>
+      <td>Responsive Design</td>
+      <td>Responsive Design Test Case 7</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_RESP_008</td>
+      <td>Responsive Design</td>
+      <td>Responsive Design Test Case 8</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_RESP_009</td>
+      <td>Responsive Design</td>
+      <td>Responsive Design Test Case 9</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_RESP_010</td>
+      <td>Responsive Design</td>
+      <td>Responsive Design Test Case 10</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_RESP_011</td>
+      <td>Responsive Design</td>
+      <td>Responsive Design Test Case 11</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_RESP_012</td>
+      <td>Responsive Design</td>
+      <td>Responsive Design Test Case 12</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_RESP_013</td>
+      <td>Responsive Design</td>
+      <td>Responsive Design Test Case 13</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_RESP_014</td>
+      <td>Responsive Design</td>
+      <td>Responsive Design Test Case 14</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_RESP_015</td>
+      <td>Responsive Design</td>
+      <td>Responsive Design Test Case 15</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_RESP_016</td>
+      <td>Responsive Design</td>
+      <td>Responsive Design Test Case 16</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_RESP_017</td>
+      <td>Responsive Design</td>
+      <td>Responsive Design Test Case 17</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_RESP_018</td>
+      <td>Responsive Design</td>
+      <td>Responsive Design Test Case 18</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_RESP_019</td>
+      <td>Responsive Design</td>
+      <td>Responsive Design Test Case 19</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_RESP_020</td>
+      <td>Responsive Design</td>
+      <td>Responsive Design Test Case 20</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-failed">
+      <td>TC_PERF_001</td>
+      <td>Performance Smoke Tests</td>
+      <td>Performance Smoke Tests Test Case 1</td>
+      <td><span class="badge badge-failed">Failed</span></td>
+      <td>50ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_PERF_002</td>
+      <td>Performance Smoke Tests</td>
+      <td>Performance Smoke Tests Test Case 2</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_PERF_003</td>
+      <td>Performance Smoke Tests</td>
+      <td>Performance Smoke Tests Test Case 3</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_PERF_004</td>
+      <td>Performance Smoke Tests</td>
+      <td>Performance Smoke Tests Test Case 4</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_PERF_005</td>
+      <td>Performance Smoke Tests</td>
+      <td>Performance Smoke Tests Test Case 5</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_PERF_006</td>
+      <td>Performance Smoke Tests</td>
+      <td>Performance Smoke Tests Test Case 6</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_PERF_007</td>
+      <td>Performance Smoke Tests</td>
+      <td>Performance Smoke Tests Test Case 7</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_PERF_008</td>
+      <td>Performance Smoke Tests</td>
+      <td>Performance Smoke Tests Test Case 8</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_PERF_009</td>
+      <td>Performance Smoke Tests</td>
+      <td>Performance Smoke Tests Test Case 9</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_PERF_010</td>
+      <td>Performance Smoke Tests</td>
+      <td>Performance Smoke Tests Test Case 10</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_PERF_011</td>
+      <td>Performance Smoke Tests</td>
+      <td>Performance Smoke Tests Test Case 11</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_PERF_012</td>
+      <td>Performance Smoke Tests</td>
+      <td>Performance Smoke Tests Test Case 12</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_PERF_013</td>
+      <td>Performance Smoke Tests</td>
+      <td>Performance Smoke Tests Test Case 13</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_PERF_014</td>
+      <td>Performance Smoke Tests</td>
+      <td>Performance Smoke Tests Test Case 14</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_PERF_015</td>
+      <td>Performance Smoke Tests</td>
+      <td>Performance Smoke Tests Test Case 15</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_PERF_016</td>
+      <td>Performance Smoke Tests</td>
+      <td>Performance Smoke Tests Test Case 16</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_PERF_017</td>
+      <td>Performance Smoke Tests</td>
+      <td>Performance Smoke Tests Test Case 17</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_PERF_018</td>
+      <td>Performance Smoke Tests</td>
+      <td>Performance Smoke Tests Test Case 18</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_PERF_019</td>
+      <td>Performance Smoke Tests</td>
+      <td>Performance Smoke Tests Test Case 19</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_PERF_020</td>
+      <td>Performance Smoke Tests</td>
+      <td>Performance Smoke Tests Test Case 20</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_001</td>
+      <td>Regression</td>
+      <td>Regression Test Case 1</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_002</td>
+      <td>Regression</td>
+      <td>Regression Test Case 2</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_003</td>
+      <td>Regression</td>
+      <td>Regression Test Case 3</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_004</td>
+      <td>Regression</td>
+      <td>Regression Test Case 4</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_005</td>
+      <td>Regression</td>
+      <td>Regression Test Case 5</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_006</td>
+      <td>Regression</td>
+      <td>Regression Test Case 6</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_007</td>
+      <td>Regression</td>
+      <td>Regression Test Case 7</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_008</td>
+      <td>Regression</td>
+      <td>Regression Test Case 8</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_009</td>
+      <td>Regression</td>
+      <td>Regression Test Case 9</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_010</td>
+      <td>Regression</td>
+      <td>Regression Test Case 10</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_011</td>
+      <td>Regression</td>
+      <td>Regression Test Case 11</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_012</td>
+      <td>Regression</td>
+      <td>Regression Test Case 12</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_013</td>
+      <td>Regression</td>
+      <td>Regression Test Case 13</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_014</td>
+      <td>Regression</td>
+      <td>Regression Test Case 14</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_015</td>
+      <td>Regression</td>
+      <td>Regression Test Case 15</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_016</td>
+      <td>Regression</td>
+      <td>Regression Test Case 16</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_017</td>
+      <td>Regression</td>
+      <td>Regression Test Case 17</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_018</td>
+      <td>Regression</td>
+      <td>Regression Test Case 18</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_019</td>
+      <td>Regression</td>
+      <td>Regression Test Case 19</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_020</td>
+      <td>Regression</td>
+      <td>Regression Test Case 20</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_021</td>
+      <td>Regression</td>
+      <td>Regression Test Case 21</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_022</td>
+      <td>Regression</td>
+      <td>Regression Test Case 22</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_023</td>
+      <td>Regression</td>
+      <td>Regression Test Case 23</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_024</td>
+      <td>Regression</td>
+      <td>Regression Test Case 24</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_025</td>
+      <td>Regression</td>
+      <td>Regression Test Case 25</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_026</td>
+      <td>Regression</td>
+      <td>Regression Test Case 26</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_027</td>
+      <td>Regression</td>
+      <td>Regression Test Case 27</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_028</td>
+      <td>Regression</td>
+      <td>Regression Test Case 28</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_029</td>
+      <td>Regression</td>
+      <td>Regression Test Case 29</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_030</td>
+      <td>Regression</td>
+      <td>Regression Test Case 30</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-failed">
+      <td>TC_REG_031</td>
+      <td>Regression</td>
+      <td>Regression Test Case 31</td>
+      <td><span class="badge badge-failed">Failed</span></td>
+      <td>50ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_032</td>
+      <td>Regression</td>
+      <td>Regression Test Case 32</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_033</td>
+      <td>Regression</td>
+      <td>Regression Test Case 33</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_034</td>
+      <td>Regression</td>
+      <td>Regression Test Case 34</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_035</td>
+      <td>Regression</td>
+      <td>Regression Test Case 35</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_036</td>
+      <td>Regression</td>
+      <td>Regression Test Case 36</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_037</td>
+      <td>Regression</td>
+      <td>Regression Test Case 37</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_038</td>
+      <td>Regression</td>
+      <td>Regression Test Case 38</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_039</td>
+      <td>Regression</td>
+      <td>Regression Test Case 39</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_040</td>
+      <td>Regression</td>
+      <td>Regression Test Case 40</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_041</td>
+      <td>Regression</td>
+      <td>Regression Test Case 41</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_042</td>
+      <td>Regression</td>
+      <td>Regression Test Case 42</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_043</td>
+      <td>Regression</td>
+      <td>Regression Test Case 43</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_044</td>
+      <td>Regression</td>
+      <td>Regression Test Case 44</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_045</td>
+      <td>Regression</td>
+      <td>Regression Test Case 45</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_046</td>
+      <td>Regression</td>
+      <td>Regression Test Case 46</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_047</td>
+      <td>Regression</td>
+      <td>Regression Test Case 47</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_048</td>
+      <td>Regression</td>
+      <td>Regression Test Case 48</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>High</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_049</td>
+      <td>Regression</td>
+      <td>Regression Test Case 49</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Medium</td>
+    </tr>
+  
+    <tr class="status-passed">
+      <td>TC_REG_050</td>
+      <td>Regression</td>
+      <td>Regression Test Case 50</td>
+      <td><span class="badge badge-passed">Passed</span></td>
+      <td>0ms</td>
+      <td>Low</td>
+    </tr>
+  
+        </tbody>
+      </table>
+    </div>
+  </body>
+  </html>
+  
