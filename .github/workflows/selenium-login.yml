@@ -132,6 +132,9 @@ jobs:
       - name: Archive Reports to gh-pages Branch
         if: always()
         run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
           if [ -d "gh-pages-dir" ]; then
             cd gh-pages-dir
             git pull origin gh-pages || true
@@ -171,6 +174,7 @@ jobs:
         if: always()
         id: deployment
         uses: actions/deploy-pages@v4
+        continue-on-error: true
 
       - name: Upload Excel Automation Test Report
         if: always()
