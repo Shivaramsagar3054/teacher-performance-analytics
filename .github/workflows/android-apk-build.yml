@@ -127,11 +127,11 @@ jobs:
       - name: Execute E2E Tests in Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 33
-          target: google_apis
-          arch: x86_64
+          api-level: 29
+          target: default
+          arch: x86
           force-avd-creation: false
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          emulator-options: -no-window -gpu swiftshader_indirect -no-audio -no-boot-anim -no-snapshot -camera-back none
           disable-animations: true
           script: |
             adb install mobile-app/android/app/build/outputs/apk/debug/app-debug.apk || echo "APK install failed, proceeding..."
@@ -139,7 +139,7 @@ jobs:
             npm test || echo "Mocha mobile E2E execution finished"
         env:
           ANDROID_DEVICE_NAME: "emulator-5554"
-          ANDROID_PLATFORM_VERSION: "13.0"
+          ANDROID_PLATFORM_VERSION: "10.0"
           APP_APK_PATH: "../mobile-app/android/app/build/outputs/apk/debug/app-debug.apk"
 
       - name: Upload Raw Test Results
