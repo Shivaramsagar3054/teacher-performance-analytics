@@ -8,7 +8,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  security-audit:
+  static-analysis:
+    name: Run Static Application Security Testing (SAST)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -16,31 +17,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Detect Backend Framework
-        id: detect-framework
-        run: |
-          if [ -f "backend/manage.py" ]; then
-            echo "framework=django" >> $GITHUB_OUTPUT
-            echo "Detected Django backend framework!"
-          elif [ -f "backend/package.json" ]; then
-            echo "framework=node" >> $GITHUB_OUTPUT
-            echo "Detected Node.js backend framework!"
-          else
-            echo "framework=unknown" >> $GITHUB_OUTPUT
-            echo "Unknown backend framework"
-          fi
-
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
           cache: 'pip'
           cache-dependency-path: backend/requirements.txt
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
 
       - name: Install System Dependencies for mysqlclient
         run: |
@@ -52,10 +34,6 @@ jobs:
           cd backend
           pip install -r requirements.txt
           pip install semgrep pip-audit
-
-      - name: Install Root Node Dependencies (for ExcelJS report generator)
-        run: |
-          npm install
 
       - name: Run Gitleaks Secret Scanner
         uses: gitleaks/gitleaks-action@v2
@@ -74,17 +52,65 @@ jobs:
           scan-ref: 'backend/'
           format: 'table'
           severity: 'CRITICAL'
-          exit-code: '1' # Fail workflow if Critical vulnerabilities are found
+          exit-code: '1'
 
       - name: Run Dependency Vulnerability Audit
         run: |
           cd backend
           pip-audit -r requirements.txt || true
 
+  unit-tests:
+    name: Run Unit and Functional API Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install System Dependencies for mysqlclient
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y default-libmysqlclient-dev build-essential pkg-config
+
+      - name: Install Python Dependencies
+        run: |
+          cd backend
+          pip install -r requirements.txt
+
       - name: Run Django Unit & API Tests
         run: |
           cd backend
           python manage.py test apis
+
+  performance-tests:
+    name: Run Baseline Performance and Load Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install System Dependencies for mysqlclient
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y default-libmysqlclient-dev build-essential pkg-config
+
+      - name: Install Python Dependencies
+        run: |
+          cd backend
+          pip install -r requirements.txt
 
       - name: Run Performance / Load Tests
         run: |
@@ -114,21 +140,56 @@ jobs:
           # Stop server
           kill $SERVER_PID
 
+  reporting:
+    name: Generate Security spreadsheets & Summaries
+    needs: [static-analysis, unit-tests, performance-tests]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Root Node Dependencies
+        run: |
+          npm install
+
       - name: Generate Security spreadsheets
-        if: always()
         run: |
           node "automation/vulnerability-test-results/generate-security-reports.js"
 
-      - name: Upload Security Findings Spreadsheet & Artifacts
-        if: always()
+      - name: Upload Excel Findings Report
         uses: actions/upload-artifact@v4
         with:
-          name: security-audit-reports
-          path: |
-            automation/vulnerability-test-results/
+          name: Security_Findings
+          path: automation/vulnerability-test-results/findings.xlsx
+          retention-days: 30
+
+      - name: Upload Excel Endpoint Inventory
+        uses: actions/upload-artifact@v4
+        with:
+          name: Endpoint_Inventory
+          path: automation/vulnerability-test-results/endpoint-inventory.xlsx
+          retention-days: 30
+
+      - name: Upload Excel Test Cases
+        uses: actions/upload-artifact@v4
+        with:
+          name: Vulnerability_Test_Cases
+          path: automation/vulnerability-test-results/test-cases.xlsx
+          retention-days: 30
+
+      - name: Upload Excel Dependency Vulnerabilities
+        uses: actions/upload-artifact@v4
+        with:
+          name: Dependency_Vulnerabilities
+          path: automation/vulnerability-test-results/dependency-vulnerabilities.xlsx
           retention-days: 30
 
       - name: Publish Security Summary to Step Summary
-        if: always()
         run: |
           cat "automation/vulnerability-test-results/executive-summary.md" >> $GITHUB_STEP_SUMMARY || echo "No summary found"

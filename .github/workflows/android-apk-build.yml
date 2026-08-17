@@ -11,8 +11,9 @@ permissions:
   contents: write
 
 jobs:
-  android-e2e:
-    runs-on: macos-13
+  build-apk:
+    name: Build Android APK
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -39,6 +40,61 @@ jobs:
           chmod +x gradlew
           ./gradlew assembleDebug
 
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-apk
+          path: mobile-app/android/app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 1
+
+  lint-mobile:
+    name: Lint & Verify JavaScript Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Mobile Automation Dependencies
+        run: |
+          cd automation/mobile-automation
+          npm ci || npm install
+
+      - name: Verify JavaScript Code Syntax
+        run: |
+          node -c automation/mobile-automation/tests/appium-tests.js
+          node -c automation/mobile-automation/data/test-cases-data.js
+          node -c automation/mobile-automation/utils/report-generator.js
+
+  run-tests:
+    name: Run Appium Tests on Emulator
+    needs: build-apk
+    runs-on: macos-13
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Download APK
+        uses: actions/download-artifact@v4
+        with:
+          name: android-apk
+          path: mobile-app/android/app/build/outputs/apk/debug/
+
       - name: Install Appium & UIAutomator2 Driver
         run: |
           npm install -g appium
@@ -53,7 +109,7 @@ jobs:
       - name: Install Mobile Automation Dependencies
         run: |
           cd automation/mobile-automation
-          npm install
+          npm ci || npm install
 
       - name: Execute E2E Tests in Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
@@ -73,8 +129,35 @@ jobs:
           ANDROID_PLATFORM_VERSION: "13.0"
           APP_APK_PATH: "../mobile-app/android/app/build/outputs/apk/debug/app-debug.apk"
 
-      - name: Archive Mobile Reports to gh-pages Branch
+      - name: Upload Raw Test Results
         if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-reports
+          path: automation/mobile-automation/reports/
+          retention-days: 1
+
+  generate-and-publish-reports:
+    name: Generate & Publish E2E Reports
+    needs: [run-tests, lint-mobile]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Download Raw Test Results
+        uses: actions/download-artifact@v4
+        with:
+          name: raw-reports
+          path: automation/mobile-automation/reports
+
+      - name: Archive Mobile Reports to gh-pages Branch
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -99,21 +182,34 @@ jobs:
           git diff-index --quiet HEAD || git commit -m "Publish Mobile Appium E2E Reports for Build ${{ github.run_number }}"
           git push origin gh-pages || echo "Push failed or nothing to push"
 
-      - name: Upload Automation Evidence
-        if: always()
+      - name: Upload Excel Automation Test Report
         uses: actions/upload-artifact@v4
         with:
-          name: mobile-e2e-reports
-          path: |
-            automation/mobile-automation/reports/Excel/
-            automation/mobile-automation/reports/HTML/
-            automation/mobile-automation/reports/JSON/
-            automation/mobile-automation/reports/Screenshots/
-            automation/mobile-automation/reports/Logs/
-            automation/mobile-automation/reports/Summary/
+          name: Mobile_Automation_Test_Report
+          path: automation/mobile-automation/reports/Excel/Automation_Test_Report.xlsx
+          retention-days: 30
+
+      - name: Upload Excel Passed Test Cases
+        uses: actions/upload-artifact@v4
+        with:
+          name: Mobile_Passed_Test_Cases
+          path: automation/mobile-automation/reports/Excel/Passed_Test_Cases.xlsx
+          retention-days: 30
+
+      - name: Upload Excel Failed Test Cases
+        uses: actions/upload-artifact@v4
+        with:
+          name: Mobile_Failed_Test_Cases
+          path: automation/mobile-automation/reports/Excel/Failed_Test_Cases.xlsx
+          retention-days: 30
+
+      - name: Upload Excel Execution Summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: Mobile_Execution_Summary
+          path: automation/mobile-automation/reports/Excel/Execution_Summary.xlsx
           retention-days: 30
 
       - name: Publish Test Summary
-        if: always()
         run: |
           cat automation/mobile-automation/reports/Summary/summary.md >> $GITHUB_STEP_SUMMARY || echo "No summary found"

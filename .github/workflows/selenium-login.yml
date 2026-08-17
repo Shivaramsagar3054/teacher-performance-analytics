@@ -17,13 +17,12 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build-deploy-test:
+  build:
+    name: Build Website
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -40,7 +39,28 @@ jobs:
           cd website
           npm run build
 
-      - name: Checkout or Create gh-pages Branch
+      - name: Upload Website Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-dist
+          path: website/dist/
+          retention-days: 1
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Download Website Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: website-dist
+          path: website/dist
+
+      - name: Deploy to gh-pages Branch
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -53,15 +73,18 @@ jobs:
             git rm -rf .
             cd ..
           fi
-
-      - name: Copy Website Build to gh-pages
-        run: |
+          
           cp -r website/dist/* gh-pages-dir/
           cd gh-pages-dir
           git add .
           git diff-index --quiet HEAD || git commit -m "Deploy Website Build ${{ github.run_number }}"
           git push origin gh-pages || echo "Nothing to push"
 
+  verify:
+    name: Verify Live Deployment
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
       - name: Verify Live Deployment Readiness
         run: |
           BASE_URL="https://Shivaramsagar3054.github.io/teacher-performance-analytics/"
@@ -77,6 +100,21 @@ jobs:
           done
           echo "Deployment verification timed out."
           exit 1
+
+  test-and-report:
+    name: Run Selenium E2E Tests
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
       - name: Install Web Automation Dependencies
         run: |
@@ -94,7 +132,6 @@ jobs:
       - name: Archive Reports to gh-pages Branch
         if: always()
         run: |
-          # Safe pull or clone of gh-pages branch
           if [ -d "gh-pages-dir" ]; then
             cd gh-pages-dir
             git pull origin gh-pages || true
@@ -135,18 +172,36 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Upload Automation Evidence
+      - name: Upload Excel Automation Test Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: web-e2e-reports
-          path: |
-            automation/web-automation/reports/Excel/
-            automation/web-automation/reports/HTML/
-            automation/web-automation/reports/JSON/
-            automation/web-automation/reports/Screenshots/
-            automation/web-automation/reports/Logs/
-            automation/web-automation/reports/Summary/
+          name: Automation_Test_Report
+          path: automation/web-automation/reports/Excel/Automation_Test_Report.xlsx
+          retention-days: 30
+
+      - name: Upload Excel Passed Test Cases
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Passed_Test_Cases
+          path: automation/web-automation/reports/Excel/Passed_Test_Cases.xlsx
+          retention-days: 30
+
+      - name: Upload Excel Failed Test Cases
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Failed_Test_Cases
+          path: automation/web-automation/reports/Excel/Failed_Test_Cases.xlsx
+          retention-days: 30
+
+      - name: Upload Excel Summary Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Summary_Report
+          path: automation/web-automation/reports/Excel/Summary_Report.xlsx
           retention-days: 30
 
       - name: Publish Test Summary

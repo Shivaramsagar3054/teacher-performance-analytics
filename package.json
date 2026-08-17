@@ -1,0 +1,8 @@
+{
+  "name": "teacher-performance-analytics-root",
+  "version": "1.0.0",
+  "description": "Root package config for security report generation dependency management",
+  "dependencies": {
+    "exceljs": "^4.4.0"
+  }
+}
