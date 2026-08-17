@@ -50,7 +50,8 @@ jobs:
       - name: Install Python Dependencies
         run: |
           cd backend
-          pip install -r requirements.txt
+          grep -vE 'opencv|mediapipe|sounddevice|matplotlib' requirements.txt > filtered_requirements.txt
+          pip install -r filtered_requirements.txt
           pip install semgrep pip-audit
 
       - name: Install Root Node Dependencies (for ExcelJS report generator)

@@ -27,7 +27,8 @@ jobs:
       - name: Install Dependencies
         run: |
           cd backend
-          pip install -r requirements.txt
+          grep -vE 'opencv|mediapipe|sounddevice|matplotlib' requirements.txt > filtered_requirements.txt
+          pip install -r filtered_requirements.txt
 
       - name: Run Migrations Check
         run: |

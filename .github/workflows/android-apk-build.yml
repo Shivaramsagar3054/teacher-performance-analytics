@@ -79,13 +79,14 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          git clone --branch gh-pages https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages-dir || {
+          if ! git clone --branch gh-pages https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages-dir; then
+            echo "gh-pages branch not found. Creating a new one..."
             git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages-dir
             cd gh-pages-dir
             git checkout --orphan gh-pages
             git rm -rf .
             cd ..
-          }
+          fi
           
           mkdir -p gh-pages-dir/reports/mobile/latest
           mkdir -p gh-pages-dir/reports/mobile/history/build-${{ github.run_number }}
