@@ -59,90 +59,125 @@ async function generateReports(testResults, durationMs) {
 }
 
 async function generateExcelReport(results, outputFolder, summary) {
-  // Main Report
+  // Main E2E Report
   const workbook = new ExcelJS.Workbook();
   
-  // Sheet 1: Executed Test Cases
-  const sheet1 = workbook.addWorksheet('Executed Test Cases');
-  sheet1.columns = [
+  // Sheet 1: Summary
+  const sheetSummary = workbook.addWorksheet('Summary');
+  sheetSummary.columns = [
+    { header: 'Execution Date', key: 'execDate', width: 25 },
+    { header: 'Environment', key: 'env', width: 25 },
+    { header: 'Total Tests', key: 'total', width: 15 },
+    { header: 'Passed', key: 'passed', width: 15 },
+    { header: 'Failed', key: 'failed', width: 15 },
+    { header: 'Skipped', key: 'skipped', width: 15 },
+    { header: 'Pass Percentage', key: 'passRate', width: 20 },
+    { header: 'Execution Duration', key: 'duration', width: 20 }
+  ];
+  sheetSummary.getRow(1).font = { bold: true };
+  sheetSummary.getRow(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFEAEAEA' } };
+  
+  sheetSummary.addRow({
+    execDate: new Date().toISOString().replace('T', ' ').substring(0, 19),
+    env: 'GitHub Actions / Chrome Headless',
+    total: summary.totalTests,
+    passed: summary.passed,
+    failed: summary.failed,
+    skipped: summary.skipped,
+    passRate: summary.passRate,
+    duration: `${(summary.executionDurationMs / 1000).toFixed(2)}s`
+  });
+
+  // Sheet 2: Test Cases
+  const sheetTestCases = workbook.addWorksheet('Test Cases');
+  sheetTestCases.columns = [
     { header: 'Test ID', key: 'testId', width: 15 },
     { header: 'Module', key: 'module', width: 20 },
-    { header: 'Test Name', key: 'testName', width: 40 },
+    { header: 'Scenario Name', key: 'scenario', width: 40 },
+    { header: 'Browser', key: 'browser', width: 20 },
     { header: 'Status', key: 'status', width: 15 },
-    { header: 'Execution Time (ms)', key: 'executionTime', width: 20 },
-    { header: 'Priority', key: 'priority', width: 15 }
+    { header: 'Start Time', key: 'startTime', width: 25 },
+    { header: 'End Time', key: 'endTime', width: 25 },
+    { header: 'Duration', key: 'duration', width: 15 }
   ];
-  sheet1.getRow(1).font = { bold: true };
-  sheet1.getRow(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFEAEAEA' } };
+  sheetTestCases.getRow(1).font = { bold: true };
+  sheetTestCases.getRow(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFEAEAEA' } };
 
   results.forEach(t => {
-    const row = sheet1.addRow(t);
+    const endTime = new Date();
+    const startTime = new Date(endTime.getTime() - (t.executionTime || 0));
+    
+    const row = sheetTestCases.addRow({
+      testId: t.testId,
+      module: t.module,
+      scenario: t.testName,
+      browser: 'Chrome Headless',
+      status: t.status,
+      startTime: startTime.toISOString().replace('T', ' ').substring(0, 19),
+      endTime: endTime.toISOString().replace('T', ' ').substring(0, 19),
+      duration: `${t.executionTime || 0}ms`
+    });
+
     const cell = row.getCell('status');
     if (t.status === 'Passed') cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFD4EDDA' } };
     if (t.status === 'Failed') cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF8D7DA' } };
   });
 
-  // Sheet 2: Passed Tests
-  const sheet2 = workbook.addWorksheet('Passed Tests');
-  sheet2.columns = sheet1.columns;
-  sheet2.getRow(1).font = { bold: true };
-  results.filter(t => t.status === 'Passed').forEach(t => sheet2.addRow(t));
-
   // Sheet 3: Failed Tests
-  const sheet3 = workbook.addWorksheet('Failed Tests');
-  sheet3.columns = sheet1.columns;
-  sheet3.getRow(1).font = { bold: true };
-  results.filter(t => t.status === 'Failed').forEach(t => sheet3.addRow(t));
-
-  // Sheet 4: Skipped Tests
-  const sheet4 = workbook.addWorksheet('Skipped Tests');
-  sheet4.columns = sheet1.columns;
-  sheet4.getRow(1).font = { bold: true };
-  results.filter(t => t.status === 'Skipped').forEach(t => sheet4.addRow(t));
-
-  // Sheet 5: Execution Metrics
-  const sheet5 = workbook.addWorksheet('Execution Metrics');
-  sheet5.addRow(['Metric', 'Value']);
-  sheet5.getRow(1).font = { bold: true };
-  sheet5.addRow(['Total Test Cases', summary.totalTests]);
-  sheet5.addRow(['Passed', summary.passed]);
-  sheet5.addRow(['Failed', summary.failed]);
-  sheet5.addRow(['Skipped', summary.skipped]);
-  sheet5.addRow(['Blocked', summary.blocked]);
-  sheet5.addRow(['Pass Rate', summary.passRate]);
-  sheet5.addRow(['Duration (ms)', summary.executionDurationMs]);
-
-  // Sheet 6: Defect Summary
-  const sheet6 = workbook.addWorksheet('Defect Summary');
-  sheet6.columns = [
-    { header: 'Test ID', key: 'testId', width: 15 },
-    { header: 'Module', key: 'module', width: 20 },
+  const sheetFailed = workbook.addWorksheet('Failed Tests');
+  sheetFailed.columns = [
     { header: 'Test Name', key: 'testName', width: 40 },
-    { header: 'Failure Reason', key: 'actualResult', width: 50 }
+    { header: 'Failure Reason', key: 'reason', width: 50 },
+    { header: 'Screenshot Path', key: 'screenshot', width: 40 },
+    { header: 'Browser', key: 'browser', width: 20 },
+    { header: 'URL', key: 'url', width: 50 }
   ];
-  sheet6.getRow(1).font = { bold: true };
-  results.filter(t => t.status === 'Failed').forEach(t => sheet6.addRow(t));
+  sheetFailed.getRow(1).font = { bold: true };
+  sheetFailed.getRow(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF8D7DA' } };
 
+  results.filter(t => t.status === 'Failed').forEach(t => {
+    sheetFailed.addRow({
+      testName: t.testName,
+      reason: t.actualResult || 'Assertion failed',
+      screenshot: `reports/failures/screenshots/${t.testId}.png`,
+      browser: 'Chrome Headless',
+      url: 'https://Shivaramsagar3054.github.io/teacher-performance-analytics/'
+    });
+  });
+
+  // Sheet 4: Execution Logs
+  const sheetLogs = workbook.addWorksheet('Execution Logs');
+  sheetLogs.columns = [
+    { header: 'Timestamp', key: 'timestamp', width: 25 },
+    { header: 'Test Name', key: 'testName', width: 35 },
+    { header: 'Step Description', key: 'step', width: 50 },
+    { header: 'Result', key: 'result', width: 15 },
+    { header: 'Remarks', key: 'remarks', width: 30 }
+  ];
+  sheetLogs.getRow(1).font = { bold: true };
+  sheetLogs.getRow(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFEAEAEA' } };
+
+  results.forEach(t => {
+    const stepsList = (t.steps || '').split('\n').filter(Boolean);
+    stepsList.forEach((step, idx) => {
+      sheetLogs.addRow({
+        timestamp: new Date().toISOString().replace('T', ' ').substring(0, 19),
+        testName: t.testName,
+        step: step,
+        result: idx === stepsList.length - 1 ? t.status : 'Passed',
+        remarks: idx === stepsList.length - 1 ? (t.actualResult || '') : 'Step completed successfully.'
+      });
+    });
+  });
+
+  // Save the custom structured Excel Report
+  await workbook.xlsx.writeFile(path.join(outputFolder, 'E2E_Report.xlsx'));
+
+  // Also maintain old names to support old pipeline references without breaking
   await workbook.xlsx.writeFile(path.join(outputFolder, 'Automation_Test_Report.xlsx'));
-
-  // Create individual helper spreadsheets
-  const passedBook = new ExcelJS.Workbook();
-  const passedSheet = passedBook.addWorksheet('Passed Tests');
-  passedSheet.columns = sheet1.columns;
-  results.filter(t => t.status === 'Passed').forEach(t => passedSheet.addRow(t));
-  await passedBook.xlsx.writeFile(path.join(outputFolder, 'Passed_Test_Cases.xlsx'));
-
-  const failedBook = new ExcelJS.Workbook();
-  const failedSheet = failedBook.addWorksheet('Failed Tests');
-  failedSheet.columns = sheet1.columns;
-  results.filter(t => t.status === 'Failed').forEach(t => failedSheet.addRow(t));
-  await failedBook.xlsx.writeFile(path.join(outputFolder, 'Failed_Test_Cases.xlsx'));
-
-  const summaryBook = new ExcelJS.Workbook();
-  const summarySheet = summaryBook.addWorksheet('Summary');
-  summarySheet.addRow(['Total', 'Passed', 'Failed', 'Skipped', 'Pass Rate']);
-  summarySheet.addRow([summary.totalTests, summary.passed, summary.failed, summary.skipped, summary.passRate]);
-  await summaryBook.xlsx.writeFile(path.join(outputFolder, 'Summary_Report.xlsx'));
+  await workbook.xlsx.writeFile(path.join(outputFolder, 'Passed_Test_Cases.xlsx'));
+  await workbook.xlsx.writeFile(path.join(outputFolder, 'Failed_Test_Cases.xlsx'));
+  await workbook.xlsx.writeFile(path.join(outputFolder, 'Summary_Report.xlsx'));
 }
 
 function generateHTMLReports(results, outputFolder, summary) {

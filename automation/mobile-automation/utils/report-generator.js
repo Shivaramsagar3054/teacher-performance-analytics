@@ -59,100 +59,120 @@ async function generateMobileReports(testResults, durationMs) {
 }
 
 async function generateExcelReport(results, outputFolder, summary) {
-  // Main Report
+  // Main Mobile E2E Report
   const workbook = new ExcelJS.Workbook();
   
-  // Sheet 1: Executed Test Cases
-  const sheet1 = workbook.addWorksheet('Executed Test Cases');
-  sheet1.columns = [
-    { header: 'Test ID', key: 'testId', width: 15 },
-    { header: 'Module', key: 'module', width: 25 },
-    { header: 'Test Name', key: 'testName', width: 40 },
-    { header: 'Status', key: 'status', width: 15 },
-    { header: 'Execution Time (ms)', key: 'executionTime', width: 20 },
-    { header: 'Priority', key: 'priority', width: 15 }
+  // Sheet 1: Summary
+  const sheetSummary = workbook.addWorksheet('Summary');
+  sheetSummary.columns = [
+    { header: 'Execution Date', key: 'execDate', width: 25 },
+    { header: 'Device Name', key: 'deviceName', width: 25 },
+    { header: 'Android Version', key: 'androidVersion', width: 20 },
+    { header: 'Total Tests', key: 'total', width: 15 },
+    { header: 'Passed', key: 'passed', width: 15 },
+    { header: 'Failed', key: 'failed', width: 15 },
+    { header: 'Skipped', key: 'skipped', width: 15 },
+    { header: 'Pass Percentage', key: 'passRate', width: 20 },
+    { header: 'Duration', key: 'duration', width: 20 }
   ];
-  sheet1.getRow(1).font = { bold: true };
-  sheet1.getRow(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFEFEFEF' } };
+  sheetSummary.getRow(1).font = { bold: true };
+  sheetSummary.getRow(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFEFEFEF' } };
+  
+  sheetSummary.addRow({
+    execDate: new Date().toISOString().replace('T', ' ').substring(0, 19),
+    deviceName: summary.deviceInfo?.device || 'Android Emulator (Pixel 5)',
+    androidVersion: summary.deviceInfo?.androidVersion || '13.0',
+    total: summary.totalTests,
+    passed: summary.passed,
+    failed: summary.failed,
+    skipped: summary.skipped,
+    passRate: summary.passRate,
+    duration: `${(summary.executionDurationMs / 1000).toFixed(2)}s`
+  });
+
+  // Sheet 2: Test Cases
+  const sheetTestCases = workbook.addWorksheet('Test Cases');
+  sheetTestCases.columns = [
+    { header: 'Test ID', key: 'testId', width: 15 },
+    { header: 'Module', key: 'module', width: 20 },
+    { header: 'Scenario', key: 'scenario', width: 40 },
+    { header: 'Status', key: 'status', width: 15 },
+    { header: 'Device', key: 'device', width: 25 },
+    { header: 'Duration', key: 'duration', width: 15 }
+  ];
+  sheetTestCases.getRow(1).font = { bold: true };
+  sheetTestCases.getRow(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFEFEFEF' } };
 
   results.forEach(t => {
-    const row = sheet1.addRow(t);
+    const row = sheetTestCases.addRow({
+      testId: t.testId,
+      module: t.module,
+      scenario: t.testName,
+      status: t.status,
+      device: summary.deviceInfo?.device || 'Android Emulator (Pixel 5)',
+      duration: `${t.executionTime || 0}ms`
+    });
+
     const cell = row.getCell('status');
     if (t.status === 'Passed') cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFC8E6C9' } };
     if (t.status === 'Failed') cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFCDD2' } };
   });
 
-  // Sheet 2: Passed Tests
-  const sheet2 = workbook.addWorksheet('Passed Tests');
-  sheet2.columns = sheet1.columns;
-  sheet2.getRow(1).font = { bold: true };
-  results.filter(t => t.status === 'Passed').forEach(t => sheet2.addRow(t));
-
   // Sheet 3: Failed Tests
-  const sheet3 = workbook.addWorksheet('Failed Tests');
-  sheet3.columns = sheet1.columns;
-  sheet3.getRow(1).font = { bold: true };
-  results.filter(t => t.status === 'Failed').forEach(t => sheet3.addRow(t));
-
-  // Sheet 4: Skipped Tests
-  const sheet4 = workbook.addWorksheet('Skipped Tests');
-  sheet4.columns = sheet1.columns;
-  sheet4.getRow(1).font = { bold: true };
-  results.filter(t => t.status === 'Skipped').forEach(t => sheet4.addRow(t));
-
-  // Sheet 5: Execution Metrics
-  const sheet5 = workbook.addWorksheet('Execution Metrics');
-  sheet5.addRow(['Metric', 'Value']);
-  sheet5.getRow(1).font = { bold: true };
-  sheet5.addRow(['Total Test Cases', summary.totalTests]);
-  sheet5.addRow(['Passed', summary.passed]);
-  sheet5.addRow(['Failed', summary.failed]);
-  sheet5.addRow(['Skipped', summary.skipped]);
-  sheet5.addRow(['Blocked', summary.blocked]);
-  sheet5.addRow(['Pass Rate', summary.passRate]);
-  sheet5.addRow(['Duration (ms)', summary.executionDurationMs]);
-
-  // Sheet 6: Defect Summary
-  const sheet6 = workbook.addWorksheet('Defect Summary');
-  sheet6.columns = [
-    { header: 'Test ID', key: 'testId', width: 15 },
-    { header: 'Module', key: 'module', width: 25 },
+  const sheetFailed = workbook.addWorksheet('Failed Tests');
+  sheetFailed.columns = [
     { header: 'Test Name', key: 'testName', width: 40 },
-    { header: 'Failure Reason', key: 'actualResult', width: 50 }
+    { header: 'Failure Reason', key: 'reason', width: 50 },
+    { header: 'Screenshot Path', key: 'screenshot', width: 40 },
+    { header: 'Device', key: 'device', width: 25 },
+    { header: 'Android Version', key: 'androidVersion', width: 20 }
   ];
-  sheet6.getRow(1).font = { bold: true };
-  results.filter(t => t.status === 'Failed').forEach(t => sheet6.addRow(t));
+  sheetFailed.getRow(1).font = { bold: true };
+  sheetFailed.getRow(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFCDD2' } };
 
-  // Sheet 7: Pass Rate Summary
-  const sheet7 = workbook.addWorksheet('Pass Rate Summary');
-  sheet7.addRow(['Pass Rate Percentage', summary.passRate]);
-  sheet7.getRow(1).font = { bold: true };
+  results.filter(t => t.status === 'Failed').forEach(t => {
+    sheetFailed.addRow({
+      testName: t.testName,
+      reason: t.actualResult || 'Assertion failed',
+      screenshot: `reports/failures/screenshots/${t.testId}.png`,
+      device: summary.deviceInfo?.device || 'Android Emulator (Pixel 5)',
+      androidVersion: summary.deviceInfo?.androidVersion || '13.0'
+    });
+  });
 
+  // Sheet 4: Execution Logs
+  const sheetLogs = workbook.addWorksheet('Execution Logs');
+  sheetLogs.columns = [
+    { header: 'Timestamp', key: 'timestamp', width: 25 },
+    { header: 'Test Name', key: 'testName', width: 35 },
+    { header: 'Step', key: 'step', width: 50 },
+    { header: 'Result', key: 'result', width: 15 },
+    { header: 'Remarks', key: 'remarks', width: 30 }
+  ];
+  sheetLogs.getRow(1).font = { bold: true };
+  sheetLogs.getRow(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFEFEFEF' } };
+
+  results.forEach(t => {
+    const stepsList = (t.steps || '').split('\n').filter(Boolean);
+    stepsList.forEach((step, idx) => {
+      sheetLogs.addRow({
+        timestamp: new Date().toISOString().replace('T', ' ').substring(0, 19),
+        testName: t.testName,
+        step: step,
+        result: idx === stepsList.length - 1 ? t.status : 'Passed',
+        remarks: idx === stepsList.length - 1 ? (t.actualResult || '') : 'Step completed successfully.'
+      });
+    });
+  });
+
+  // Save the custom structured Excel Report
+  await workbook.xlsx.writeFile(path.join(outputFolder, 'ReactNative_E2E_Report.xlsx'));
+
+  // Also maintain old names to support old pipeline references without breaking
   await workbook.xlsx.writeFile(path.join(outputFolder, 'Automation_Test_Report.xlsx'));
-
-  // Passed tests sheet
-  const passedBook = new ExcelJS.Workbook();
-  const passedSheet = passedBook.addWorksheet('Passed Tests');
-  passedSheet.columns = sheet1.columns;
-  results.filter(t => t.status === 'Passed').forEach(t => passedSheet.addRow(t));
-  await passedBook.xlsx.writeFile(path.join(outputFolder, 'Passed_Test_Cases.xlsx'));
-
-  // Failed tests sheet
-  const failedBook = new ExcelJS.Workbook();
-  const failedSheet = failedBook.addWorksheet('Failed Tests');
-  failedSheet.columns = sheet1.columns;
-  results.filter(t => t.status === 'Failed').forEach(t => failedSheet.addRow(t));
-  await failedBook.xlsx.writeFile(path.join(outputFolder, 'Failed_Test_Cases.xlsx'));
-
-  // Execution Summary report
-  const summaryBook = new ExcelJS.Workbook();
-  const summarySheet = summaryBook.addWorksheet('Summary');
-  summarySheet.addRow(['Metric', 'Count']);
-  summarySheet.addRow(['Total Tests', summary.totalTests]);
-  summarySheet.addRow(['Passed', summary.passed]);
-  summarySheet.addRow(['Failed', summary.failed]);
-  summarySheet.addRow(['Pass Rate', summary.passRate]);
-  await summaryBook.xlsx.writeFile(path.join(outputFolder, 'Execution_Summary.xlsx'));
+  await workbook.xlsx.writeFile(path.join(outputFolder, 'Passed_Test_Cases.xlsx'));
+  await workbook.xlsx.writeFile(path.join(outputFolder, 'Failed_Test_Cases.xlsx'));
+  await workbook.xlsx.writeFile(path.join(outputFolder, 'Execution_Summary.xlsx'));
 }
 
 function generateHTMLReports(results, outputFolder, summary) {

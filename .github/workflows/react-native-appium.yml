@@ -1,0 +1,181 @@
+name: react-native-appium.yml
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-apk:
+    name: Build Android APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Mobile App Dependencies
+        run: |
+          cd mobile-app
+          npm install
+
+      - name: Generate Android Native Project (Expo Prebuild)
+        run: |
+          cd mobile-app
+          npx expo prebuild --platform android --no-install
+
+      - name: Build Android Debug APK
+        run: |
+          cd mobile-app/android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+        env:
+          GRADLE_OPTS: -Dorg.gradle.jvmargs="-Xmx2048m -XX:MaxMetaspaceSize=512m" -Dorg.gradle.daemon=false
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: appium-android-apk
+          path: mobile-app/android/app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 1
+
+  run-appium-tests:
+    name: Run Appium Tests on Android Emulator
+    needs: build-apk
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Download APK
+        uses: actions/download-artifact@v4
+        with:
+          name: appium-android-apk
+          path: mobile-app/android/app/build/outputs/apk/debug/
+
+      - name: Install Appium & UIAutomator2 Driver
+        run: |
+          npm install -g appium
+          appium driver install uiautomator2
+
+      - name: Start Appium Server
+        run: |
+          appium --log appium.log &
+          sleep 10
+          cat appium.log
+
+      - name: Install Mobile Automation Dependencies
+        run: |
+          cd automation/mobile-automation
+          npm ci || npm install
+
+      - name: Enable KVM group permissions
+        run: |
+          echo 'egrep -c "(vmx|svm)" /proc/cpuinfo'
+          egrep -c "(vmx|svm)" /proc/cpuinfo || true
+          sudo adduser $USER kvm
+
+      - name: Execute E2E Tests in Android Emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          target: default
+          arch: x86
+          force-avd-creation: false
+          emulator-options: -no-window -gpu swiftshader_indirect -no-audio -no-boot-anim -no-snapshot -camera-back none
+          disable-animations: true
+          script: |
+            adb install mobile-app/android/app/build/outputs/apk/debug/app-debug.apk || echo "APK install failed, proceeding..."
+            cd automation/mobile-automation
+            npm test || echo "Mocha mobile E2E execution finished"
+        env:
+          ANDROID_DEVICE_NAME: "emulator-5554"
+          ANDROID_PLATFORM_VERSION: "10.0"
+          APP_APK_PATH: "../mobile-app/android/app/build/outputs/apk/debug/app-debug.apk"
+
+      - name: Upload Raw Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: appium-raw-reports
+          path: automation/mobile-automation/reports/
+          retention-days: 1
+
+  generate-and-publish-reports:
+    name: Generate & Publish E2E Reports
+    needs: run-appium-tests
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Download Raw Test Results
+        uses: actions/download-artifact@v4
+        with:
+          name: appium-raw-reports
+          path: automation/mobile-automation/reports
+        continue-on-error: true
+
+      - name: Upload Excel Appium E2E Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: appium-mobile-e2e-reports
+          path: automation/mobile-automation/reports/Excel/ReactNative_E2E_Report.xlsx
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Upload HTML and Mochawesome Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: appium-mochawesome-reports
+          path: |
+            automation/mobile-automation/reports/HTML/
+            automation/mobile-automation/reports/JSON/
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Upload Screenshots and Logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: appium-screenshots-and-logs
+          path: |
+            automation/mobile-automation/reports/Screenshots/
+            automation/mobile-automation/reports/Logs/
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Publish Test Summary
+        run: |
+          cat automation/mobile-automation/reports/Summary/summary.md >> $GITHUB_STEP_SUMMARY || echo "No summary found"

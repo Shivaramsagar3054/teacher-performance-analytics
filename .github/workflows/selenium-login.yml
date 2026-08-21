@@ -178,6 +178,15 @@ jobs:
         uses: actions/deploy-pages@v4
         continue-on-error: true
 
+      - name: Upload Excel E2E Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: selenium-web-e2e-reports
+          path: automation/web-automation/reports/Excel/E2E_Report.xlsx
+          retention-days: 30
+          if-no-files-found: warn
+
       - name: Upload Excel Automation Test Report
         if: always()
         uses: actions/upload-artifact@v4
