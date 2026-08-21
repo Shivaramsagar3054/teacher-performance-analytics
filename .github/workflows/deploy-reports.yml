@@ -1,0 +1,103 @@
+name: Deploy Reports
+
+on:
+  workflow_run:
+    workflows: ["Selenium Test", "Appium Test", "Security Review"]
+    types:
+      - completed
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  consolidate-reports:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Initialize Git User Config
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Download Selenium Raw Reports
+        uses: actions/download-artifact@v4
+        with:
+          name: selenium-raw-reports
+          path: automation/web-automation/reports
+        continue-on-error: true
+
+      - name: Download Appium Raw Reports
+        uses: actions/download-artifact@v4
+        with:
+          name: appium-raw-reports
+          path: automation/mobile-automation/reports
+        continue-on-error: true
+
+      - name: Build Consolidated Reports Structure
+        run: |
+          # Clone pages branch
+          if ! git clone --branch gh-pages https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages-dir; then
+            git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages-dir
+            cd gh-pages-dir
+            git checkout --orphan gh-pages
+            git rm -rf .
+            cd ..
+          fi
+          
+          # Setup directories
+          mkdir -p gh-pages-dir/reports/latest/selenium
+          mkdir -p gh-pages-dir/reports/history/build-${{ github.run_number }}/selenium
+          mkdir -p gh-pages-dir/reports/mobile/latest
+          mkdir -p gh-pages-dir/reports/mobile/history/build-${{ github.run_number }}
+          
+          # Copy reports
+          cp -r automation/web-automation/reports/* gh-pages-dir/reports/latest/selenium/ || true
+          cp -r automation/web-automation/reports/* gh-pages-dir/reports/history/build-${{ github.run_number }}/selenium/ || true
+          cp -r automation/mobile-automation/reports/* gh-pages-dir/reports/mobile/latest/ || true
+          cp -r automation/mobile-automation/reports/* gh-pages-dir/reports/mobile/history/build-${{ github.run_number }}/ || true
+          
+          # Commit and Push
+          cd gh-pages-dir
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Publish Consolidated E2E Test Reports for Build ${{ github.run_number }}"
+          git push origin gh-pages || echo "Push failed or nothing to push"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        continue-on-error: true
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'gh-pages-dir/'
+        continue-on-error: true
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+
+      - name: Upload Restructured Selenium E2E Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: selenium-web-e2e-reports
+          path: automation/web-automation/reports/Excel/E2E_Report.xlsx
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Upload Restructured Appium E2E Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: appium-mobile-e2e-reports
+          path: automation/mobile-automation/reports/Excel/ReactNative_E2E_Report.xlsx
+          retention-days: 30
+          if-no-files-found: warn

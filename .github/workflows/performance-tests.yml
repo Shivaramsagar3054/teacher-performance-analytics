@@ -1,4 +1,4 @@
-name: load-test.yml
+name: Load Test
 
 on:
   push:

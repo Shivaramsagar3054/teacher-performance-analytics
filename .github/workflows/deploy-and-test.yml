@@ -1,4 +1,4 @@
-name: selenium-login.yml
+name: Selenium Test
 
 on:
   push:
@@ -129,101 +129,10 @@ jobs:
           BASE_URL: "https://Shivaramsagar3054.github.io/teacher-performance-analytics/"
           HEADLESS: "true"
 
-      - name: Archive Reports to gh-pages Branch
-        if: always()
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          
-          if [ -d "gh-pages-dir" ]; then
-            cd gh-pages-dir
-            git pull origin gh-pages || true
-            cd ..
-          else
-            if ! git clone --branch gh-pages https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages-dir; then
-              git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages-dir
-              cd gh-pages-dir
-              git checkout --orphan gh-pages
-              git rm -rf .
-              cd ..
-            fi
-          fi
-          
-          cd gh-pages-dir
-          mkdir -p reports/latest
-          mkdir -p reports/history/build-${{ github.run_number }}
-          
-          cp -r ../automation/web-automation/reports/* reports/latest/ || true
-          cp -r ../automation/web-automation/reports/* reports/history/build-${{ github.run_number }}/ || true
-          
-          git add .
-          git diff-index --quiet HEAD || git commit -m "Publish E2E Web Reports for Build ${{ github.run_number }}"
-          git push origin gh-pages || echo "Push failed or nothing to push"
-
-      - name: Setup Pages
-        if: always()
-        uses: actions/configure-pages@v4
-        continue-on-error: true
-
-      - name: Upload Pages Artifact
-        if: always()
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: 'gh-pages-dir/'
-        continue-on-error: true
-
-      - name: Deploy to GitHub Pages
-        if: always()
-        id: deployment
-        uses: actions/deploy-pages@v4
-        continue-on-error: true
-
-      - name: Upload Excel E2E Report
+      - name: Upload Raw Test Results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: selenium-web-e2e-reports
-          path: automation/web-automation/reports/Excel/E2E_Report.xlsx
-          retention-days: 30
-          if-no-files-found: warn
-
-      - name: Upload Excel Automation Test Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: Automation_Test_Report
-          path: automation/web-automation/reports/Excel/Automation_Test_Report.xlsx
-          retention-days: 30
-          if-no-files-found: warn
-
-      - name: Upload Excel Passed Test Cases
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: Passed_Test_Cases
-          path: automation/web-automation/reports/Excel/Passed_Test_Cases.xlsx
-          retention-days: 30
-          if-no-files-found: warn
-
-      - name: Upload Excel Failed Test Cases
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: Failed_Test_Cases
-          path: automation/web-automation/reports/Excel/Failed_Test_Cases.xlsx
-          retention-days: 30
-          if-no-files-found: warn
-
-      - name: Upload Excel Summary Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: Summary_Report
-          path: automation/web-automation/reports/Excel/Summary_Report.xlsx
-          retention-days: 30
-          if-no-files-found: warn
-
-      - name: Publish Test Summary
-        if: always()
-        run: |
-          cat automation/web-automation/reports/Summary/summary.md >> $GITHUB_STEP_SUMMARY || echo "No summary found"
+          name: selenium-raw-reports
+          path: automation/web-automation/reports/
+          retention-days: 1

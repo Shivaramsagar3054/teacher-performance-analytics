@@ -1,4 +1,4 @@
-name: react-native-appium.yml
+name: Appium Test
 
 on:
   push:
@@ -126,56 +126,3 @@ jobs:
           name: appium-raw-reports
           path: automation/mobile-automation/reports/
           retention-days: 1
-
-  generate-and-publish-reports:
-    name: Generate & Publish E2E Reports
-    needs: run-appium-tests
-    runs-on: ubuntu-latest
-    if: always()
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Download Raw Test Results
-        uses: actions/download-artifact@v4
-        with:
-          name: appium-raw-reports
-          path: automation/mobile-automation/reports
-        continue-on-error: true
-
-      - name: Upload Excel Appium E2E Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: appium-mobile-e2e-reports
-          path: automation/mobile-automation/reports/Excel/ReactNative_E2E_Report.xlsx
-          retention-days: 30
-          if-no-files-found: warn
-
-      - name: Upload HTML and Mochawesome Reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: appium-mochawesome-reports
-          path: |
-            automation/mobile-automation/reports/HTML/
-            automation/mobile-automation/reports/JSON/
-          retention-days: 30
-          if-no-files-found: warn
-
-      - name: Upload Screenshots and Logs
-        uses: actions/upload-artifact@v4
-        with:
-          name: appium-screenshots-and-logs
-          path: |
-            automation/mobile-automation/reports/Screenshots/
-            automation/mobile-automation/reports/Logs/
-          retention-days: 30
-          if-no-files-found: warn
-
-      - name: Publish Test Summary
-        run: |
-          cat automation/mobile-automation/reports/Summary/summary.md >> $GITHUB_STEP_SUMMARY || echo "No summary found"
