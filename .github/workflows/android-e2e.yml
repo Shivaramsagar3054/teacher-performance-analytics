@@ -6,6 +6,8 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0' # Weekly on Sundays
 
 permissions:
   contents: write
@@ -111,9 +113,9 @@ jobs:
           emulator-options: -no-window -gpu swiftshader_indirect -no-audio -no-boot-anim -no-snapshot -camera-back none
           disable-animations: true
           script: |
-            adb install mobile-app/android/app/build/outputs/apk/debug/app-debug.apk || echo "APK install failed, proceeding..."
+            adb install mobile-app/android/app/build/outputs/apk/debug/app-debug.apk || exit 1
             cd automation/mobile-automation
-            npm test || echo "Mocha mobile E2E execution finished"
+            npm test
         env:
           ANDROID_DEVICE_NAME: "emulator-5554"
           ANDROID_PLATFORM_VERSION: "10.0"
@@ -126,3 +128,44 @@ jobs:
           name: appium-raw-reports
           path: automation/mobile-automation/reports/
           retention-days: 1
+
+      - name: Upload Excel Automation Test Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Automation_Test_Report
+          path: automation/mobile-automation/reports/Excel/Automation_Test_Report.xlsx
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Upload Excel Passed Test Cases
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Passed_Test_Cases
+          path: automation/mobile-automation/reports/Excel/Passed_Test_Cases.xlsx
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Upload Excel Failed Test Cases
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Failed_Test_Cases
+          path: automation/mobile-automation/reports/Excel/Failed_Test_Cases.xlsx
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Upload Excel Execution Summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Execution_Summary
+          path: automation/mobile-automation/reports/Excel/Execution_Summary.xlsx
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Publish Test Summary
+        if: always()
+        run: |
+          cat automation/mobile-automation/reports/Summary/summary.md >> $GITHUB_STEP_SUMMARY || echo "No summary found"

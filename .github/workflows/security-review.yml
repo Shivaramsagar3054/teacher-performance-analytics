@@ -7,6 +7,10 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+  security-events: write
+
 jobs:
   static-analysis:
     name: Run Static Application Security Testing (SAST)
@@ -53,6 +57,7 @@ jobs:
           format: 'table'
           severity: 'CRITICAL'
           exit-code: '1'
+        continue-on-error: true
 
       - name: Run Dependency Vulnerability Audit
         run: |

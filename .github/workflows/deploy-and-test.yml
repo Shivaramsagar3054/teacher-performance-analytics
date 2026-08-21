@@ -78,7 +78,7 @@ jobs:
           cd gh-pages-dir
           git add .
           git diff-index --quiet HEAD || git commit -m "Deploy Website Build ${{ github.run_number }}"
-          git push origin gh-pages || echo "Nothing to push"
+          git push origin gh-pages || exit 1
 
   verify:
     name: Verify Live Deployment
@@ -124,7 +124,7 @@ jobs:
       - name: Run Selenium E2E Tests
         run: |
           cd automation/web-automation
-          npm test || echo "Mocha E2E execution finished, proceeding to generate reports"
+          npm test
         env:
           BASE_URL: "https://Shivaramsagar3054.github.io/teacher-performance-analytics/"
           HEADLESS: "true"
@@ -136,3 +136,44 @@ jobs:
           name: selenium-raw-reports
           path: automation/web-automation/reports/
           retention-days: 1
+
+      - name: Upload Excel Automation Test Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Automation_Test_Report
+          path: automation/web-automation/reports/Excel/Automation_Test_Report.xlsx
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Upload Excel Passed Test Cases
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Passed_Test_Cases
+          path: automation/web-automation/reports/Excel/Passed_Test_Cases.xlsx
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Upload Excel Failed Test Cases
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Failed_Test_Cases
+          path: automation/web-automation/reports/Excel/Failed_Test_Cases.xlsx
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Upload Excel Summary Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Summary_Report
+          path: automation/web-automation/reports/Excel/Summary_Report.xlsx
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Publish Test Summary
+        if: always()
+        run: |
+          cat automation/web-automation/reports/Summary/summary.md >> $GITHUB_STEP_SUMMARY || echo "No summary found"
